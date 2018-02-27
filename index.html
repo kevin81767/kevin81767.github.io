@@ -18,7 +18,7 @@
     <meta property="og:image" content="https://kevin81767.github.io/images/og_img.jpg" />
     <link rel="stylesheet" href="css/main.css">
     <!--Font awesome CSS-->
-    <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="css/font-awesome-5.0.7/css/fontawesome.min.css"> -->
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Oswald:700" rel="stylesheet">
@@ -69,6 +69,16 @@
   .summary p{
     color:white;
   }
+
+  /* Progress bars */
+  .progress{
+    background-color:rgba(48, 47, 47, 0.974);
+
+}
+
+.progress-bar{
+    background-color:rgba(28, 27, 27, 0.693);
+}
 
   
 
@@ -156,21 +166,70 @@
         <h2>--SERVICES</h2>
         <div class="boxes">
           <div class="box sec1">
-            <i class="fa fa-gears fa-3x"></i>
+            <i class="fas fa-cogs fa-3x"></i>
             <h5>DEVELOPMENT</h5>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim alias omnis earum ipsa esse nihil?</p>
           </div>
           <div class="box sec2">
-            <i class="fa fa-mobile fa-3x"></i>
+            <i class="fas fa-mobile-alt fa-3x"></i>
             <h5>RESPONSIVE DESIGN</h5>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim alias omnis earum ipsa esse nihil?</p>
           </div>
           <div class="box sec3">
-            <i class="fa fa-wrench fa-3x"></i>
+            <i class="fas fa-wrench fa-3x"></i>
             <h5>MAINTENANCE</h5>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim alias omnis earum ipsa esse nihil?</p>
           </div>
         </div>
+      </section>
+
+<!-- Skills -->
+      <section class="skills">
+        <h2>--MY SKILLS</h2>
+        <div class="all-skills">
+          <div class="languages">
+            <p id="title">Programming languages used often:</p>          
+            <p>HTML/CSS</p>
+            <div class="progress">
+              <div class="progress-bar" style="width:100%">100%</div>
+            </div>
+            <p>PHP</p>
+            <div class="progress">
+              <div class="progress-bar" style="width:90%">90%</div>
+            </div>
+            <p>JAVASCRIPT</p>
+            <div class="progress">
+              <div class="progress-bar" style="width:90%">90%</div>
+            </div>
+            <p>PYTHON</p>
+            <div class="progress">
+              <div class="progress-bar" style="width:75%">75%</div>
+            </div>
+            <p>JAVA</p>
+            <div class="progress">
+              <div class="progress-bar" style="width:70%">70%</div>
+            </div>
+          </div>
+          <div class="frameworks">
+            <p id="title">Frameworks and library and tools:</p>
+            <ul>
+              <li><i class="fas fa-chevron-circle-right"></i>BOOTSTRAP</li>
+              <li><i class="fas fa-chevron-circle-right"></i>SEMANTIC UI</li>
+              <li><i class="fas fa-chevron-circle-right"></i>JQUERY</li>
+              <li><i class="fas fa-chevron-circle-right"></i>JQUERY UI</li>
+              <li><i class="fas fa-chevron-circle-right"></i>ANGULAR JS</li>
+              <li><i class="fas fa-chevron-circle-right"></i>FACEBOOK APIs</li>
+              <li><i class="fas fa-chevron-circle-right"></i>GIT</li>
+              <li><i class="fas fa-chevron-circle-right"></i>COMPOSER</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+<!-- Portfolio -->
+      <section class="portfolio">
+        <h2>--PORTFOLIO</h2>
+
       </section>
 
     </div>
@@ -180,6 +239,8 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Font awesome 5.0.7 -->
+    <script src="css/fontawesome-free-5.0.7/svg-with-js/js/fontawesome-all.js"></script>
     <script>
       var i = 0;
       var txt = "Freelance Full Stack Developer, Online and digital business maker..."; /* The text */

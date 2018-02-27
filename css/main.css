@@ -48,3 +48,33 @@ section > h2{
 .box p{
     color:gray;
 }
+
+/* skills section */
+
+li{
+    list-style-type:none;
+}
+
+.all-skills{
+    display:grid;
+    grid-gap: 20px;
+    grid-template-columns:repeat(auto-fit,minmax(200px, 1fr));
+}
+
+.languages{
+    box-shadow: 0 1px 5px black;
+    padding:15px;
+    background: rgba(51, 51, 51, 0.974);
+}
+
+.frameworks{
+    box-shadow: 0 1px 5px black;
+    padding:15px;
+    background: rgba(51, 51, 51, 0.974);
+}
+
+.frameworks li{
+    padding-bottom:5px;
+}
+
+
