@@ -1,4 +1,5 @@
 body, html {
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     height: 100%;
     margin: 0;
     background-color: rgba(51, 51, 51, 0.974);
@@ -19,4 +20,31 @@ body, html {
 
 
 
+/* Services section */
 
+section > h2{
+    text-align: center;
+    color:whitesmoke;
+    text-decoration: turquoise ;
+}
+
+.boxes{
+    display: grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px, 1fr));
+    grid-gap: 20px;
+    text-align: center;
+}
+
+.box{
+    box-shadow: 0 1px 5px black;
+    padding:5px;
+    background: rgba(51, 51, 51, 0.974);
+}
+
+.box > i,h5{
+    color:white;
+}
+
+.box p{
+    color:gray;
+}

@@ -17,6 +17,8 @@
     <meta name="keywords" content="Kevin Nyawakira, kevin81767, Nyawakira, Rwandan developer, Rwandan coder, Kevin, Full-Stack Developer, Burundian developer, Burundian coder, African coder, The Kondor coder, Kevin_coder, Rwandan developer, Rwandan coder,"/>
     <meta property="og:image" content="https://kevin81767.github.io/images/og_img.jpg" />
     <link rel="stylesheet" href="css/main.css">
+    <!--Font awesome CSS-->
+    <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Oswald:700" rel="stylesheet">
@@ -59,7 +61,11 @@
   .summary{
     background-color: rgba(51, 51, 51, 0.974);
     padding:5px;
+    box-shadow:0 1px 5px black;
 }
+  .summary h2{
+    text-align: center;
+  }
   .summary p{
     color:white;
   }
@@ -76,6 +82,8 @@
     .summary .part-summary{
       text-align:center;
     }
+
+    
 }
 @media screen and (max-width:450px){
   .write{
@@ -127,6 +135,7 @@
     <div class="container">
 <!--Summary section-->
       <section class="summary">
+        <h2>--ABOUT THIS DUDE</h2>
         <div class="row">
           <div class="col-md-3 part-img">
               <img src="images/kevin1.jpg" alt="" class="rounded-circle img-fluid">
@@ -142,6 +151,28 @@
 
       </section>
 
+<!--Services-->
+      <section class="services">
+        <h2>--SERVICES</h2>
+        <div class="boxes">
+          <div class="box sec1">
+            <i class="fa fa-gears fa-3x"></i>
+            <h5>DEVELOPMENT</h5>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim alias omnis earum ipsa esse nihil?</p>
+          </div>
+          <div class="box sec2">
+            <i class="fa fa-mobile fa-3x"></i>
+            <h5>RESPONSIVE DESIGN</h5>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim alias omnis earum ipsa esse nihil?</p>
+          </div>
+          <div class="box sec3">
+            <i class="fa fa-wrench fa-3x"></i>
+            <h5>MAINTENANCE</h5>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim alias omnis earum ipsa esse nihil?</p>
+          </div>
+        </div>
+      </section>
+
     </div>
 
     <!-- Optional JavaScript -->
@@ -151,7 +182,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script>
       var i = 0;
-      var txt = "HI, I'M KEVIN.I DESIGN & BUILD CORPORATE WEBSITES, WEB APPLICATIONS, USER INTERFACES,AND MORE... "; /* The text */
+      var txt = "Freelance Full Stack Developer, Online and digital business maker..."; /* The text */
       var speed = 100; /* The speed/duration of the effect in milliseconds */
 
       function typeWriter() {
