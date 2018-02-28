@@ -17,10 +17,14 @@
     <meta name="keywords" content="Kevin Nyawakira, kevin81767, Nyawakira, Rwandan developer, Rwandan coder, Kevin, Full-Stack Developer, Burundian developer, Burundian coder, African coder, The Kondor coder, Kevin_coder, Rwandan developer, Rwandan coder,"/>
     <meta property="og:image" content="https://kevin81767.github.io/images/og_img.jpg" />
     <link rel="stylesheet" href="css/main.css">
+    <!--Animate css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.css">-->  
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Oswald:700|Anton|Amatic+SC|Yanone+Kaffeesatz|Roboto+Condensed|PT+Sans+Narrow" rel="stylesheet">
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.js"></script>-->
+    <script src="js/smooth-scroll.js"></script>
+    <script src="js/smooth-scroll.min.js"></script>
     
   </head>
   <style>
@@ -135,16 +139,16 @@
           <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a class="nav-link" href="#">ABOUT</a>
+                <a class="nav-link" href="#about">ABOUT</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">SERVICES</a>
+                <a class="nav-link" href="#services">SERVICES</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">PORTFOLIO</a>
+                <a class="nav-link" href="#portfolio">PORTFOLIO</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">CONTACT</a>
+                <a class="nav-link" href="#contact">CONTACT</a>
               </li> 
             </ul>
           </div> 
@@ -152,7 +156,7 @@
       </nav>
     </div>
 
-    <div class="container">
+    <div class="container" id="about">
 <!--Summary section-->
       <h4 id="title-section">ABOUT</h4>
       <section class="summary">
@@ -178,20 +182,20 @@
       </section>
 <br>
 <!--Services-->
-      <section class="services">
+      <section class="services" id="services">
           <h4 id="title-section">SERVICES</h4>
         <div class="boxes">
-          <div class="box sec1">
+          <div class="box sec1 wow zoomIn" data-wow-delay="1s">
             <i class="fas fa-cogs fa-3x"></i>
             <h5>DEVELOPMENT & DESIGN</h5>
             <p>I establish a lineup of effective web design and development services to facilitate the growth of your business</p>
           </div>
-          <div class="box sec2">
+          <div class="box sec2 wow zoomIn" data-wow-delay="1s">
             <i class="fas fa-mobile-alt fa-3x"></i>  <i class="fas fa-laptop fa-3x"></i>
             <h5>MOBILE WEB DEVELOPMENT</h5>
             <p>We're no longer moving into the mobile era; we're in it. That's why I develop each website to be responsive and fit all screen's devices </p>
           </div>
-          <div class="box sec3">
+          <div class="box sec3 wow zoomIn" data-wow-delay="1s">
             <i class="fas fa-code fa-3x"></i>
             <h5>CODE MAINTANABLE</h5>
             <p>By building everything from scratch, i write code that is reusable and readable for all</p>
@@ -243,10 +247,10 @@
       </section>
 
 <!-- Portfolio -->
-      <section class="portfolio">
+      <section class="portfolio" id="portfolio">
           <h4 id="title-section">PORTFOLIO</h4>
           <div class="all-portfolio">           
-              <div class="card">
+              <div class="card wow slideInUp" data-wow-delay="1s">
                 <img src="images/meetme.jpg" alt="" class="rounded img-responsive">
                 <div class="card-content">
                   <p>Platform for buying,rent cars or house</p>
@@ -254,7 +258,7 @@
                   <a href="http://meetme.rw"><i class="fas fa-link fa-xs"></i> meetme.rw</a>
                 </div>
               </div>
-              <div class="card">
+              <div class="card wow slideInUp" data-wow-delay="1s">
                 <img src="images/transit.jpg" alt="" class="rounded img-fluid">
                 <div class="card-content">
                   <p>Online car renting for tourists in Kigali</p>
@@ -262,7 +266,7 @@
                   <a href="http://transitflash.rw"><i class="fas fa-link fa-xs"></i> transitflash.rw</a>
                 </div>
               </div>
-              <div class="card">
+              <div class="card wow slideInUp" data-wow-delay="1s">
                 <img src="images/zco.jpg" alt="" class="rounded img-fluid">
                 <div class="card-content">
                   <p>Online meat shopping and delivery services</p>
@@ -270,7 +274,7 @@
                   <a href="http://zcosupply.com"><i class="fas fa-link fa-xs"></i> zcosupply.com</a>
                 </div>
               </div>
-              <div class="card">
+              <div class="card wow slideInUp" data-wow-delay="1s">
                 <img src="images/devSolution.jpg" alt="" class="rounded img-fluid">
                 <div class="card-content">
                   <p>A developer diary. Project done in Facebook developer circle in Kigali</p>
@@ -284,7 +288,8 @@
       </section>
 
     </div>
-
+    <!--Wow.min.js-->
+    <script src="js/wow.min.js"></script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -306,6 +311,12 @@
         }
       }
       typeWriter();
+    </script>
+    <script>
+      new WOW().init();
+    </script>
+    <script>
+      var scroll = new SmoothScroll('a[href*="#"]');
     </script>
   </body>
 </html>
