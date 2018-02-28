@@ -19,6 +19,26 @@ body, html {
 }
 
 
+/* Summary */
+
+.part-summary a{
+    color:rgb(128, 127, 127);
+}
+
+.part-summary a:hover{
+    color:rgb(34, 34, 34);
+    text-decoration:cadetblue
+}
+/* title section */
+
+#title-section{
+    text-align:center;
+    padding:4px;
+    background:rgb(29, 29, 29);
+    color:rgb(169, 169, 169);
+    border-radius:4px;
+}
+
 
 /* Services section */
 
@@ -41,12 +61,20 @@ section > h2{
     background: rgba(51, 51, 51, 0.974);
 }
 
-.box > i,h5{
+/* .box > i,h5{
     color:white;
+} */
+
+.box h5{
+    padding-top:5px;
+    padding-bottom: 5px;
+    font-family: 'Anton', sans-serif;
 }
 
 .box p{
     color:gray;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 1.2em;
 }
 
 /* skills section */
@@ -59,22 +87,89 @@ li{
     display:grid;
     grid-gap: 20px;
     grid-template-columns:repeat(auto-fit,minmax(200px, 1fr));
+    color:rgb(128, 127, 127);
 }
 
 .languages{
     box-shadow: 0 1px 5px black;
     padding:15px;
     background: rgba(51, 51, 51, 0.974);
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 1.2em;
 }
 
 .frameworks{
     box-shadow: 0 1px 5px black;
     padding:15px;
     background: rgba(51, 51, 51, 0.974);
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size:1.2em;
 }
 
 .frameworks li{
     padding-bottom:5px;
 }
 
+/* Portfolio */
+.all-portfolio{
+    display:grid;
+    grid-gap: 20px;
+    grid-template-columns:repeat(auto-fit,minmax(200px, 1fr));
+}
 
+
+.card{
+    box-shadow: 0 1px 5px black;
+    padding:15px;
+    background: rgba(51, 51, 51, 0.974);
+}
+.card-content{
+
+    background:rgba(51, 51, 51, 0.974);
+    padding:15px;
+}
+
+.card-content p{
+    color:rgb(231, 231, 238);
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 1.2em;
+}
+
+.card-content blockquote{
+    color:rgb(148, 147, 147);
+    font-family: 'Amatic SC', cursive;
+    font-size:1.1em;
+}
+
+.card-content a{
+    color:rgb(128, 127, 127);
+}
+
+.card-content a:hover{
+    color:rgb(216, 216, 216);
+    text-decoration:none;
+}
+
+.card img{
+    width: 100%;
+}
+#link-git{
+    text-align: center;
+}
+
+#link-git a{
+    color:rgb(128, 127, 127);
+}
+
+#link-git a:hover{
+    color:rgb(216, 216, 216);
+    text-decoration:none;
+}
+
+
+.git-link{
+    border:4px solid  rgba(51, 51, 51, 0.974);
+    padding:6px;
+    color:rgb(128, 127, 127);
+    background-color:  rgba(24, 23, 23, 0.974);
+}
