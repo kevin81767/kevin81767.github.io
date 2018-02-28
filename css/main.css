@@ -115,6 +115,8 @@ li{
     display:grid;
     grid-gap: 20px;
     grid-template-columns:repeat(auto-fit,minmax(200px, 1fr));
+    box-shadow: 0 1px 5px black;
+    padding:20px;
 }
 
 
@@ -172,4 +174,25 @@ li{
     padding:6px;
     color:rgb(128, 127, 127);
     background-color:  rgba(24, 23, 23, 0.974);
+}
+
+/* footer */
+
+/*footer .social-links a
+{
+    display:inline-block;
+    color:rgba(255,255,255,0.6);
+    text-decoration:none;
+    margin:0 4px;height:36px;width:36px;
+    font-size:1.6rem;
+    line-height:2.3;
+    background-color:rgba(0,0,0,0.1);
+    border-radius:50px;
+    -webkit-transition:all .3s ease-in-out;
+    transition:all .3s ease-in-out
+}
+footer .social-links a:hover{
+    color:#fff;
+    background-color:rgba(0,0,0,0.3);
+    border:none;
 }

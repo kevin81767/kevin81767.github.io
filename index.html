@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.css">-->  
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Oswald:700|Anton|Amatic+SC|Yanone+Kaffeesatz|Roboto+Condensed|PT+Sans+Narrow" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:700|Anton|Amatic+SC|Yanone+Kaffeesatz|Cuprum|Roboto+Condensed|PT+Sans+Narrow" rel="stylesheet">
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.js"></script>-->
     <script src="js/smooth-scroll.js"></script>
     <script src="js/smooth-scroll.min.js"></script>
@@ -90,8 +90,49 @@
     background-color:rgba(28, 27, 27, 0.693);
 }
 
-  
+/*footer*/
 
+footer #me{
+  color:rgba(160, 155, 155, 0.6);
+  text-decoration:none;
+}
+footer #me:hover{
+  color:rgba(0,0,0,0.3);
+    border:none;
+}
+
+footer .social-links a
+{
+    display:inline-block;
+    color:rgba(160, 155, 155, 0.6);
+    text-decoration:none;
+    padding-right:10px;
+    padding-left: 10px;
+    font-size:1.6rem;   
+    -webkit-transition:all .3s ease-in-out;
+    transition:all .3s ease-in-out;
+    
+}
+footer {
+  padding:4px;
+  background:rgb(29, 29, 29);
+  margin:4px;
+}
+
+footer a:hover{
+    color:rgba(0,0,0,0.3);
+    border:none;
+}
+  
+footer  p{
+  text-align:center;
+  color:darkgray;
+  font-size:1.1em;
+}
+
+footer{
+  font-family: 'Cuprum', sans-serif;
+}
   @media screen and (max-width:768px){
     .summary .part-img{
 
@@ -286,6 +327,22 @@
           <br>
           <p id="link-git"><button class="git-link"><a href="https://github.com/kevin81767">SEE MORE ON MY GITHUB</a></button></p>
       </section>
+
+
+<!--Contact-->
+      
+<!--footer-->
+<footer>
+  <p>Handmade by <a id="me" href="https://github.com/kevin81767">Me</a></p>
+  <div class="social-links">
+    <p>
+      <a href="https://www.linkedin.com/in/kevin-nyawakira-558307129/"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://github.com/kevin81767"><i class="fab fa-github"></i></a>
+      <a href="https://www.facebook.com/nyawakira.kevin"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/kevin_cod3r/"><i class="fab fa-instagram"></i></a>
+    </p>
+  </div>
+</footer>
 
     </div>
     <!--Wow.min.js-->
