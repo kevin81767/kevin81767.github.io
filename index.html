@@ -213,7 +213,7 @@ footer{
       <section class="summary">
         <div class="row">
           <div class="col-md-3 part-img">
-              <img src="images/kevin1.jpg" alt="" class="rounded-circle img-fluid">
+              <img src="images/kevin1.jpg" alt="" onmouseup="PicChange()" id="img-kevin" class="rounded-circle img-fluid">
           </div>
           <div class="col-md-9 part-summary">
             <p>
@@ -222,7 +222,7 @@ footer{
               a part-time Developer for <strong><a href="https://irishub.rw">IRIS HUB</a></strong>.
             </p>
             <p>
-               I'm passionnate about everything related to technology and i love learning & building new things 
+               I'm passionnate about everything related to technology and i love learning & building new things.
             </p>
             <p>
               Want to know more about me and my work...KEEP SCROLLING
@@ -259,7 +259,7 @@ footer{
           <h4 id="title-section">SKILLS</h4>
         <div class="all-skills">
           <div class="languages">
-            <p id="title">Programming languages used:</p>          
+            <p id="title">Programming languages:</p>          
             <p>HTML/CSS</p>
             <div class="progress">
               <div class="progress-bar" style="width:100%">100%</div>
@@ -289,14 +289,14 @@ footer{
               <li><i class="fas fa-chevron-circle-right"></i> JQUERY</li>
               <li><i class="fas fa-chevron-circle-right"></i> JQUERY UI</li>
               <li><i class="fas fa-chevron-circle-right"></i> ANGULAR JS</li>
-              <li><i class="fas fa-chevron-circle-right"></i> THIRDS APIs</li>
+              <li><i class="fas fa-chevron-circle-right"></i> THIRD PARTY APIs</li>
               <li><i class="fas fa-chevron-circle-right"></i> GIT</li>
               <li><i class="fas fa-chevron-circle-right"></i> COMPOSER</li>
             </ul>
           </div>
         </div>
       </section>
-
+      <br>
 <!-- Portfolio -->
       <section class="portfolio" id="portfolio">
           <h4 id="title-section">PORTFOLIO</h4>
@@ -309,7 +309,7 @@ footer{
                   <a href="http://meetme.rw"><i class="fas fa-link fa-xs"></i> meetme.rw</a>
                 </div>
               </div>
-              <div class="card wow slideInUp" data-wow-delay="1s">
+              <div class="card wow slideInUp" data-wow-delay="1.5s">
                 <img src="images/transit.jpg" alt="" class="rounded img-fluid">
                 <div class="card-content">
                   <p>Online car renting for tourists in Kigali</p>
@@ -317,7 +317,7 @@ footer{
                   <a href="http://transitflash.rw"><i class="fas fa-link fa-xs"></i> transitflash.rw</a>
                 </div>
               </div>
-              <div class="card wow slideInUp" data-wow-delay="1s">
+              <div class="card wow slideInUp" data-wow-delay="2s">
                 <img src="images/zco.jpg" alt="" class="rounded img-fluid">
                 <div class="card-content">
                   <p>Online meat shopping and delivery services</p>
@@ -325,7 +325,7 @@ footer{
                   <a href="http://zcosupply.com"><i class="fas fa-link fa-xs"></i> zcosupply.com</a>
                 </div>
               </div>
-              <div class="card wow slideInUp" data-wow-delay="1s">
+              <div class="card wow slideInUp" data-wow-delay="2.5s">
                 <img src="images/devSolution.jpg" alt="" class="rounded img-fluid">
                 <div class="card-content">
                   <p>A developer diary. Project done in Facebook developer circle in Kigali</p>
@@ -378,6 +378,11 @@ footer{
         }
       }
       typeWriter();
+    </script>
+    <script>
+      function PicChange(){
+        document.getElementById("img-kevin").src="images/kevin3.jpg";
+      }
     </script>
     <script>
       new WOW().init();
