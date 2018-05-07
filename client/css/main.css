@@ -18,7 +18,7 @@ body{
     background:white;
     color:black;
     border-radius:5px;
-    padding:6px 15px;
+    padding:3px 8px;
     margin-right:10px;
 }
 
@@ -29,4 +29,34 @@ body{
 .news_letter{
     background: rgb(184, 184, 184);
     padding:10px;
+}
+
+
+
+@media(max-width:500px){
+    .account{
+        /* background: yellow; */
+        position:absolute;
+        right:8px;
+        top:15px;
+    }
+    
+    .account button{
+        text-decoration: none;
+        border:none;
+        text-align:center;
+        background:white;
+        color:black;
+        border-radius:5px;
+        padding:3px 8px;
+        margin-right:10px;
+    }
+}
+
+@media(max-width:460px){
+    .account{
+        display: none;
+    }
+    
+    
 }
