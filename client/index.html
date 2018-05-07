@@ -17,8 +17,9 @@
         <button id="head_button login">Login</button>
         <button id="head_button cart"><i class="material-icons">add_shopping_cart</i></button>
     </div> -->
-
+    <!-- __________________________FOR MOBILE_______________________ -->
     <!-- Dropdown Structure -->
+
     <!-- Dropdown House plans -->
     <ul id="dropdown1" class="dropdown-content grey darken-3">
         <li><a href="#!">3D views</a></li>
@@ -45,20 +46,68 @@
         <li><a href="#!">Infrastructural modelling</a></li>
         <li><a href="#!">Proposal survey</a></li>
     </ul>
+
+
+    <!-- _________________________FOR DESKTOP_________________________ -->
+    <!-- Dropdown Structure -->
+
+    <!-- Dropdown House plans -->
+    <ul id="dropdown10" class="dropdown-content grey darken-3">
+        <li><a href="#!">3D views</a></li>
+        <li><a href="#!">Floor Plans</a></li>
+        <li class="divider"></li>
+        <li><a href="#!">Cost estimation</a></li>
+    </ul>
+    <!-- Dropdown Real Estate -->
+    <ul id="dropdown20" class="dropdown-content grey darken-3">
+        <li><a href="#!">Plots</a></li>
+        <li><a href="#!">House on Sales</a></li>
+        <li class="divider"></li>
+        <li><a href="#!">Renting</a></li>
+    </ul>
+    <!-- Dropdown Construction services -->
+    <ul id="dropdown30" class="dropdown-content grey darken-3">
+        <li><a href="#!">Rent of Construct</a></li>
+    </ul>
+    <!-- Dropdown Enginnering support -->
+    <ul id="dropdown40" class="dropdown-content grey darken-3">
+        <li><a href="#!">Structural analysis</a></li>
+        <li><a href="#!">Geo-Technical tests</a></li>
+        <li><a href="#!">Construction</a></li>
+        <li><a href="#!">Infrastructural modelling</a></li>
+        <li><a href="#!">Proposal survey</a></li>
+    </ul>
+    <!-- _________________________________________________________________ -->
     <nav>
     <div class="nav-wrapper grey darken-3">
         <div class="container">
             <a href="#" class="brand-logo">Logo</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <a href="#" data-target="mobile-nav" class="sidenav-trigger">
+                <i class="material-icons">menu</i>
+            </a>
+            <ul class="right hide-on-med-and-down">
                 <li><a href="#">Home</a></li>
-                <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">House Plans<i class="material-icons right">arrow_drop_down</i></a></li>
-                <li><a class="dropdown-trigger" href="#!" data-target="dropdown2">Real Estate<i class="material-icons right">arrow_drop_down</i></a></li>
-                <li><a class="dropdown-trigger" href="#!" data-target="dropdown3">Construction Services<i class="material-icons right">arrow_drop_down</i></a></li>
-                <li><a class="dropdown-trigger" href="#!" data-target="dropdown4">Engineering Support<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-trigger" href="#!" data-target="dropdown10">House Plans<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-trigger" href="#!" data-target="dropdown20">Real Estate<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-trigger" href="#!" data-target="dropdown30">Construction Services<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-trigger" href="#!" data-target="dropdown40">Engineering Support<i class="material-icons right">arrow_drop_down</i></a></li>
             </ul>
         </div>
     </div>
+    
   </nav>
+  <div class="account">
+    <button id="account"><i class="material-icons teal-text">account_box</i>Login</button>
+    <button id="account"><i class="material-icons teal-text">shopping_cart</i>Cart</button>
+  </div>
+
+  <ul id="mobile-nav" class="sidenav">
+        <li><a href="#">Home</a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">House Plans<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown2">Real Estate<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown3">Construction Services<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown4">Engineering Support<i class="material-icons right">arrow_drop_down</i></a></li>
+    </ul>
   <section class="sliders">
       <div class="slider">
         <ul class="slides">
@@ -115,33 +164,33 @@
     <section class="houses-items">
         <h5>RECENT HOUSE ON SALE</h5>
         <div class="row">
-            <div class="col s3">
+            <div class="col s3 m6 s12 l3">
                 <div class="card">
                     <div class="card-image">
-                    <img src="img/pexels-photo-106399.jpeg">
+                    <img src="img/pexels-photo-186077.jpeg">
                     <span class="card-title">ID6788</span>
                     <a class="btn-floating halfway-fab waves-effect waves-light teal"><i class="material-icons">add_shopping_cart</i></a>
                     </div>
                     <div class="card-content">
-                    <p>6 bedrooms | 4baths | Area:567</p>
+                    <p>2 bedrooms | 4baths | Area:590</p>
                     <p class="teal-text">$5,000,000</p>
                     </div>
                 </div>
             </div>
-            <div class="col s3">
+            <div class="col s3 m6 s12 l3">
                 <div class="card">
                     <div class="card-image">
-                    <img src="img/pexels-photo-106399.jpeg">
-                    <span class="card-title">ID6788</span>
+                    <img src="img/pexels-photo-754276.jpeg">
+                    <span class="card-title">ID6088</span>
                     <a class="btn-floating halfway-fab waves-effect waves-light teal"><i class="material-icons">add_shopping_cart</i></a>
                     </div>
                     <div class="card-content">
-                    <p>6 bedrooms | 4baths | Area:567</p>
+                    <p>6 bedrooms | 1baths | Area:567</p>
                     <p class="teal-text">$5,000,000</p>
                     </div>
                 </div>
             </div>
-            <div class="col s3">
+            <div class="col s3 m6 s12 l3">
                 <div class="card">
                     <div class="card-image">
                     <img src="img/pexels-photo-439404.jpeg">
@@ -154,7 +203,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col s3">
+            <div class="col s3 m6 s12 l3">
                 <div class="card">
                     <div class="card-image">
                     <img src="img/pexels-photo-754276.jpeg">
@@ -169,7 +218,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col s3">
+            <div class="col s3 m6 s12 l3">
                 <div class="card">
                     <div class="card-image">
                     <img src="img/pexels-photo-106399.jpeg">
@@ -182,10 +231,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col s3">
+            <div class="col s3 m6 s12 l3">
                 <div class="card">
                     <div class="card-image">
-                    <img src="img/pexels-photo-106399.jpeg">
+                    <img src="img/pexels-photo-186077.jpeg">
                     <span class="card-title">ID6788</span>
                     <a class="btn-floating halfway-fab waves-effect waves-light teal"><i class="material-icons">add_shopping_cart</i></a>
                     </div>
@@ -195,7 +244,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col s3">
+            <div class="col s3 m6 s12 l3">
                 <div class="card">
                     <div class="card-image">
                     <img src="img/pexels-photo-439404.jpeg">
@@ -208,7 +257,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col s3">
+            <div class="col s3 m6 s12 l3">
                 <div class="card">
                     <div class="card-image">
                     <img src="img/pexels-photo-754276.jpeg">
@@ -261,6 +310,11 @@
         // slider initialisation
         $(document).ready(function(){
             $('.slider').slider();
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('.sidenav').sidenav();
         });
     </script>
 </body>
