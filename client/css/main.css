@@ -1,3 +1,6 @@
+html{
+    font-family: Roboto;
+}
 body{
     margin:0;
     background:rgb(97, 97, 97);
@@ -31,7 +34,44 @@ body{
     padding:10px;
 }
 
+/* section house plans and house-items */
 
+section h5.header-section{
+    text-align:center;
+    font-family: 'PT Sans Narrow', sans-serif;
+}
+
+section .card:hover{
+    box-shadow: 0 4px 9px black;
+}
+
+.section p#intro{
+    text-align:center;
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+
+/* item per page */
+.product img{
+    width:100%;
+}
+
+.spec a.btn-cust{
+    text-align: center;
+    width:100%;
+}
+
+.spec-item{
+    padding:5px;
+    border-radius: 6px;
+    background-color: rgb(84, 84, 84);
+    font-family: 'Rajdhani', sans-serif;
+    font-size:1.3em;
+}
+
+.spec-item h5{
+    text-align:center;
+}
 
 @media(max-width:500px){
     .account{

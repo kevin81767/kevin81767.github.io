@@ -176,6 +176,17 @@ li{
     background-color:  rgba(24, 23, 23, 0.974);
 }
 
+/* Certificate and Accomplishment section */
+
+.certificate{
+
+    display:grid;
+    grid-gap: 20px;
+    grid-template-columns:repeat(auto-fit,minmax(200px, 2fr));
+    box-shadow: 0 1px 5px black;
+    padding:20px;
+}
+
 /* footer */
 
 /*footer .social-links a
