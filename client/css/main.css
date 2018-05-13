@@ -50,6 +50,11 @@ section .card:hover{
     font-family: 'Open Sans Condensed', sans-serif;
 }
 
+/* Equal height solved */
+.flex{
+    display: flex;
+    flex-wrap: wrap;
+}
 
 /* item per page */
 .product img{
