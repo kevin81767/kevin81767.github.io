@@ -185,8 +185,20 @@ li{
     grid-template-columns:repeat(auto-fit,minmax(200px, 2fr));
     box-shadow: 0 1px 5px black;
     padding:20px;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 1.3em;
+    text-align: center;
 }
 
+.certificate a{
+    text-decoration: none;
+    color:rgb(128, 127, 127);
+}
+
+.certificate a:hover{
+    color:black;
+    text-decoration: none;
+}
 /* footer */
 
 /*footer .social-links a
