@@ -78,6 +78,15 @@ section > h2{
     font-size: 1.2em;
 }
 
+.box a{
+    color:rgb(128, 127, 127);
+}
+
+.box a:hover{
+    color:rgb(34, 34, 34);
+    text-decoration:cadetblue
+}
+
 /* skills section */
 
 li{
