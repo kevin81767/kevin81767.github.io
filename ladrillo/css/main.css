@@ -55,7 +55,7 @@ span#span-blue{
 .flow{
     display: grid;
     grid-template-columns:repeat(auto-fit,minmax(200px, 1fr));
-    grid-gap: 5px;
+    grid-gap: 15px;
     text-align:center;
 }
 
@@ -64,4 +64,12 @@ span#span-blue{
     background-color:rgba(184, 12, 184, 0.616);
     padding:30px;
     border-radius:50%;
+}
+
+/* services */
+.service{
+    display: grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px, 1fr));
+    grid-gap: 20px;
+    text-align:center;
 }
