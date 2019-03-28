@@ -1,0 +1,67 @@
+/* Main css for Ladrillo */
+@font-face {
+    font-family: 'Tw Cen MT';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Tw Cen MT'), url('Tw Cen MT.woff') format('woff');
+    }
+
+body,html{
+    color:rgb(71, 70, 70);
+    font-family: 'Tw Cen MT';
+    margin:0 auto;
+    background: rgb(255, 254, 254);
+}
+
+/* navbar */
+li#link-nav{
+    font-size:1.8em;
+}
+
+#section-title{
+    text-align: center;
+}
+
+.showcase{
+    height:400px;
+    width:100%;
+}
+
+.showcase img{
+    height:100%;
+}
+
+.who_we_are{
+    /* color:white; */
+    font-size:1.3em;
+    max-height: 350px;
+    /* background:url('../intro-picture.jpg') ;
+    /* background: rgba(128, 128, 128, 0.376);
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover; */
+}
+span#span-purple{
+    color:rgba(179, 15, 179, 0.5);
+}
+
+/* work */
+span#span-blue{
+    color:rgb(39, 39, 240);
+}
+
+/* work-flow */
+.flow{
+    display: grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px, 1fr));
+    grid-gap: 5px;
+    text-align:center;
+}
+
+.flow i{
+    color:white;
+    background-color:rgba(184, 12, 184, 0.616);
+    padding:30px;
+    border-radius:50%;
+}
