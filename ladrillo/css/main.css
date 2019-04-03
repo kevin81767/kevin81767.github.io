@@ -75,9 +75,21 @@ span#span-blue{
     color:rgb(39, 39, 240);
 }
 
+span#radius-purple{
+    padding:10px;
+    background-color:rgba(179, 15, 179, 0.5);
+    border-radius: 15px;
+}
+
+span#radius-blue{
+    padding:10px;
+    background-color: rgba(39, 39, 240, 0.678);
+    border-radius: 15px;
+}
+
 /* work-flow */
 .work-back{
-    /* height: 300px; */
+    height: 250px;
     /* width:100%; */
     /* padding:20px; */
     background: url('../images/cabinets-carpet-clean-245219.jpg');
@@ -89,7 +101,7 @@ span#span-blue{
 
 .work-flow{
     background: rgba(255, 255, 255, 0.609);
-    /* height: 100%; */
+    height: 100%;
 
 }
 
