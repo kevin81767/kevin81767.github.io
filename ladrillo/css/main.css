@@ -13,6 +13,30 @@ body,html{
     background: rgb(255, 254, 254);
 }
 
+/* slider edit */
+    /* .slider .indicators .indicator-item {
+    background-color: #666666;
+    border: 3px solid #ffffff;
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    }
+    .slider .indicators .indicator-item.active {
+    background-color: #ffffff;
+    }
+    .slider {
+    width: 900px;
+    margin: 0 auto;
+    } */
+    .slider .indicators {
+        visibility: hidden;
+    /* bottom: 60px;
+    z-index: 100; */
+    /* text-align: left; */
+    }
+
+
+
 /* navbar */
 li#link-nav{
     font-size:1.8em;
@@ -52,6 +76,23 @@ span#span-blue{
 }
 
 /* work-flow */
+.work-back{
+    /* height: 300px; */
+    /* width:100%; */
+    /* padding:20px; */
+    background: url('../images/cabinets-carpet-clean-245219.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.work-flow{
+    background: rgba(255, 255, 255, 0.609);
+    /* height: 100%; */
+
+}
+
 .flow{
     display: grid;
     grid-template-columns:repeat(auto-fit,minmax(200px, 1fr));
@@ -60,9 +101,9 @@ span#span-blue{
 }
 
 .flow i{
-    color:white;
+    color:rgb(245, 241, 241);
     background-color:rgba(184, 12, 184, 0.616);
-    padding:30px;
+    padding:25px;
     border-radius:50%;
 }
 
