@@ -10,7 +10,7 @@ html,body{
     font-family: 'Catamaran', sans-serif;
 }
 p{
-    font-family: 'PT Sans Narrow', sans-serif;
+    font-family: 'Open Sans Condensed', sans-serif;
     font-size:1.3rem;
 }
 img{
@@ -182,6 +182,62 @@ h1#title-section-all{
     font-size: 4.2rem;
 
 }
+
+.we{
+    padding:3rem 0;
+}
+
+h2#our-team{
+    font-family: 'Fjalla One', sans-serif;
+    text-align: center;
+    color:var(--secondary-color);
+    font-size:3.4rem;
+    padding:2rem 0;
+}
+h2#our-team span{
+    color:var(--overlay-red);
+}
+
+.card-team h4{
+    font-size:1.5em;
+}
+
+/* ================Services */
+
+#quote{
+    padding:2rem 0;
+    text-align: center;
+}
+
+#quote p{
+    font-size:1.8rem;
+}
+
+#quote i{
+    color:var(--overlay-red);
+}
+
+
+.service-intore .row{
+    padding :2rem 0;
+}
+
+.s.intore{
+    align-items: center;
+    justify-content: center;
+}
+
+.penetration-test, .app-security, .sec-services{
+    color:white;
+    background: var(--overlay-black);
+}
+
+.vulnerability-assess, .security-audit{
+    background: var(--overlay-red);
+    color:white;
+}
+
+
 
 
 
