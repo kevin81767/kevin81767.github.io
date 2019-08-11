@@ -58,6 +58,19 @@ button .btn.btn-in{
     background: url('../assets/services-background.jpg') no-repeat fixed center/cover;
 }
 
+#service-info{
+    background: #313131b7;
+    padding:2rem 0;
+    border-radius:3px;
+    
+}
+
+#service-info p{
+    color:#fff;
+    font-size: 2rem;
+    text-align:center;
+}
+
 .services-boxes{
     display: grid;
     grid-template-columns:repeat(auto-fit,minmax(200px, 1fr));
@@ -185,6 +198,27 @@ h1#title-section-all{
 
 .we{
     padding:3rem 0;
+}
+.MV{
+    padding:3rem;
+    background: var(--overlay-red);
+}
+
+.M-V{
+    display: grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px, 1fr));
+    grid-gap: 5px;
+    text-align:center;
+    color:#323232;
+}
+
+.M-V h2{
+    font-family: 'Fjalla One', sans-serif;
+    color:#fff;
+}
+
+.M-V h2 span{
+    color:var(--overlay-black);
 }
 
 h2#our-team{
