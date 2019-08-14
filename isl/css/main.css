@@ -209,7 +209,7 @@ h1#title-section-all{
     grid-template-columns:repeat(auto-fit,minmax(200px, 1fr));
     grid-gap: 5px;
     text-align:center;
-    color:#323232;
+    color:#fffafa;
 }
 
 .M-V h2{
