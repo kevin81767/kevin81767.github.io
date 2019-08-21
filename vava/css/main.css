@@ -1,0 +1,91 @@
+/* html,body{
+	margin:0;
+	
+
+} */
+
+html,body{
+	margin:0;
+}
+
+p{
+	font-family: 'Catamaran', sans-serif;
+}
+
+a{
+	text-decoration: none;
+
+	color:rgb(190, 189, 189);
+}
+.center{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+}
+
+.login-section{
+	margin:auto;
+	width: 30%;
+	padding:15px;
+	background: #303049;
+	border-radius: 6px;
+	margin-top:20px;
+}
+
+.reg-section{
+	margin:auto;
+	width: 30%;
+	padding:15px;
+	background: #cfcfd1;
+	border-radius: 6px;
+	margin-top:20px;
+}
+
+.login-section input, .reg-section input{
+	border-radius:10px;
+}
+
+
+
+
+
+@media only screen and (max-width: 768px){
+	.login-section{
+		margin:auto;
+		width: 40%;
+		padding:15px;
+		background: #303049;
+		border-radius: 6px;
+		margin-top:20px;
+	}
+	
+	.reg-section{
+		margin:auto;
+		width: 40%;
+		padding:15px;
+		background: #cfcfd1;
+		border-radius: 6px;
+		margin-top:20px;
+	}
+}
+
+@media only screen and (max-width: 562px){
+	.login-section{
+		margin:auto;
+		width: 80%;
+		padding:15px;
+		background: #303049;
+		border-radius: 6px;
+		margin-top:20px;
+	}
+	
+	.reg-section{
+		margin:auto;
+		width: 80%;
+		padding:15px;
+		background: #cfcfd1;
+		border-radius: 6px;
+		margin-top:20px;
+	}
+}
