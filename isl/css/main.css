@@ -272,6 +272,17 @@ h2#our-team span{
 }
 
 
+@media only screen and (max-width: 560px) {
+    footer p{
+        text-align:center;
+        padding:0.8rem;
+        font-family: 'Open Sans Condensed', sans-serif;
+        color:var(--overlay-black);
+        background: rgb(20, 20, 20);
+        font-size: 1.2rem;
+    }
+  }
+
 
 
 
