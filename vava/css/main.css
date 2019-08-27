@@ -42,13 +42,30 @@ a{
 	margin-top:20px;
 }
 
+.login-section p{
+	color:#fff;
+}
+
 .login-section input, .reg-section input{
 	border-radius:10px;
 }
 
 
+/* dashboard */
 
+.profile{
+	font-size:1.2rem;
+	color:#ff6600;
+	font-family: 'Roboto Condensed', sans-serif;
+}
 
+/* .profile p{
+	font-family: 'Roboto Condensed', sans-serif;
+} */
+
+.profile span{
+	color:#333;
+}
 
 @media only screen and (max-width: 768px){
 	.login-section{
