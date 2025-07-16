@@ -1,20 +1,250 @@
-/* Modern Hacker Theme CSS */
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap');
-
+/* Oh My Zsh Inspired Color Themes */
 :root {
-    --primary-color: #00ff88;
-    --secondary-color: #0066ff;
-    --accent-color: #ff0066;
-    --bg-primary: #0a0a0a;
-    --bg-secondary: #111111;
-    --bg-tertiary: #1a1a1a;
-    --text-primary: #ffffff;
-    --text-secondary: #cccccc;
-    --text-muted: #888888;
-    --border-color: #333333;
-    --shadow-color: rgba(0, 255, 136, 0.2);
-    --font-mono: 'JetBrains Mono', monospace;
-    --font-sans: 'Inter', sans-serif;
+    /* Agnoster Theme Colors */
+    --primary-color: #268bd2;      /* Bright blue */
+    --secondary-color: #2aa198;    /* Cyan */
+    --accent-color: #dc322f;       /* Red */
+    --success-color: #859900;      /* Green */
+    --warning-color: #b58900;      /* Yellow */
+    --info-color: #6c71c4;         /* Violet */
+    
+    /* Background Colors */
+    --bg-primary: #002b36;         /* Base03 - Dark blue-gray */
+    --bg-secondary: #073642;       /* Base02 - Darker blue-gray */
+    --bg-tertiary: #586e75;        /* Base01 - Medium gray */
+    
+    /* Text Colors */
+    --text-primary: #fdf6e3;       /* Base3 - Light cream */
+    --text-secondary: #eee8d5;     /* Base2 - Light gray */
+    --text-muted: #93a1a1;         /* Base1 - Medium light gray */
+    --text-dark: #657b83;          /* Base00 - Dark gray */
+    
+    /* UI Colors */
+    --border-color: #586e75;       /* Base01 */
+    --shadow-color: rgba(38, 139, 210, 0.3);
+    
+    /* Terminal Colors */
+    --terminal-bg: #001e27;        /* Darker than base03 */
+    --terminal-border: #268bd2;    /* Primary blue */
+    --prompt-color: #859900;       /* Green for prompts */
+    --command-color: #fdf6e3;      /* Light for commands */
+    --output-color: #2aa198;       /* Cyan for output */
+    
+    /* Fonts */
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', monospace;
+    --font-sans: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Alternative: Powerlevel10k Theme */
+:root.powerlevel10k {
+    --primary-color: #00d7ff;      /* Bright cyan */
+    --secondary-color: #5fff00;    /* Bright green */
+    --accent-color: #ff5f00;       /* Orange */
+    --success-color: #00ff5f;      /* Bright green */
+    --warning-color: #ffff00;      /* Yellow */
+    --info-color: #af87ff;         /* Light purple */
+    
+    --bg-primary: #1c1c1c;         /* Dark gray */
+    --bg-secondary: #262626;       /* Medium dark gray */
+    --bg-tertiary: #3a3a3a;        /* Light dark gray */
+    
+    --text-primary: #ffffff;       /* Pure white */
+    --text-secondary: #d0d0d0;     /* Light gray */
+    --text-muted: #808080;         /* Medium gray */
+    
+    --border-color: #444444;
+    --shadow-color: rgba(0, 215, 255, 0.3);
+    --terminal-bg: #0c0c0c;
+    --terminal-border: #00d7ff;
+    --prompt-color: #5fff00;
+    --command-color: #ffffff;
+    --output-color: #00d7ff;
+}
+
+/* Alternative: Dracula Theme */
+:root.dracula {
+    --primary-color: #bd93f9;      /* Purple */
+    --secondary-color: #50fa7b;    /* Green */
+    --accent-color: #ff79c6;       /* Pink */
+    --success-color: #50fa7b;      /* Green */
+    --warning-color: #f1fa8c;      /* Yellow */
+    --info-color: #8be9fd;         /* Cyan */
+    
+    --bg-primary: #282a36;         /* Dark purple-gray */
+    --bg-secondary: #44475a;       /* Medium purple-gray */
+    --bg-tertiary: #6272a4;        /* Light purple-gray */
+    
+    --text-primary: #f8f8f2;       /* Light gray */
+    --text-secondary: #f8f8f2;     /* Light gray */
+    --text-muted: #6272a4;         /* Medium purple-gray */
+    
+    --border-color: #6272a4;
+    --shadow-color: rgba(189, 147, 249, 0.3);
+    --terminal-bg: #1e1f29;
+    --terminal-border: #bd93f9;
+    --prompt-color: #50fa7b;
+    --command-color: #f8f8f2;
+    --output-color: #8be9fd;
+}
+
+/* Update terminal styling with Oh My Zsh colors */
+.terminal-window {
+    background: var(--terminal-bg);
+    border: 2px solid var(--terminal-border);
+    box-shadow: 0 20px 40px var(--shadow-color);
+}
+
+.terminal-header {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--terminal-border);
+}
+
+.terminal-title {
+    color: var(--prompt-color);
+}
+
+.command {
+    color: var(--command-color);
+}
+
+.output {
+    color: var(--output-color);
+}
+
+/* Update section prompts */
+.section-prompt {
+    color: var(--prompt-color);
+}
+
+.section-prompt::before {
+    content: "➜ ";
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+/* Update navigation with Oh My Zsh styling */
+.nav-link {
+    position: relative;
+}
+
+.nav-link::before {
+    content: "~/";
+    color: var(--secondary-color);
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--primary-color);
+}
+
+/* Update buttons with theme colors */
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    box-shadow: 0 10px 30px var(--shadow-color);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 15px 40px var(--shadow-color);
+}
+
+.btn-secondary {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-color);
+    box-shadow: 0 10px 30px var(--shadow-color);
+}
+
+/* Update skill bars */
+.skill-progress {
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+
+.skill-level {
+    color: var(--success-color);
+}
+
+/* Update service cards */
+.service-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 20px 40px var(--shadow-color);
+}
+
+.service-icon {
+    color: var(--primary-color);
+}
+
+/* Update portfolio items */
+.portfolio-item:hover {
+    box-shadow: 0 20px 40px var(--shadow-color);
+}
+
+.tech-stack span {
+    background: var(--primary-color);
+    color: var(--bg-primary);
+}
+
+/* Update social links */
+.social-link:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    box-shadow: 0 10px 30px var(--shadow-color);
+}
+
+/* Update contact methods */
+.contact-method i {
+    color: var(--primary-color);
+}
+
+/* Update stats */
+.stat-number {
+    color: var(--primary-color);
+}
+
+/* Update security items */
+.security-item:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+.security-item i {
+    color: var(--primary-color);
+}
+
+/* Update feature tags */
+.feature-tag {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Update loading screen */
+.loader-text .line {
+    color: var(--primary-color);
+}
+
+.progress-fill {
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+
+/* Update scroll indicator */
+.scroll-arrow {
+    border-color: var(--primary-color);
+}
+
+/* Update grid overlay */
+.grid-overlay {
+    background-image: 
+        linear-gradient(var(--primary-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--primary-color) 1px, transparent 1px);
+    opacity: 0.1;
+}
+
+/* Update matrix rain */
+.matrix-rain {
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="10" fill="%23268bd2" opacity="0.1">01010101</text></svg>') repeat;
 }
 
 * {
