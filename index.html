@@ -1,483 +1,501 @@
-<!--Developed from scratch with a little help of bootstrap4 and semantic-ui -->
-<!--Developer: Kevin Nyawakira(kevin81767.github.io)-->
-
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
+<head>
     <meta charset="utf-8">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Kevin Nyawakira | Cybersecurity Expert & Full-Stack Developer</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    
+    <!-- Meta tags -->
+    <meta name="description" content="Cybersecurity Expert & Full-Stack Developer specializing in penetration testing and secure web applications"/>
+    <meta property="og:title" content="Kevin Nyawakira | Cybersecurity Expert">
+    <meta property="og:description" content="Cybersecurity Expert & Full-Stack Developer specializing in penetration testing and secure web applications"/>
+    <meta property="og:image" content="https://kevin81767.github.io/images/og_img.jpg" />
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114920213-1"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-114920213-1');
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-114920213-1');
     </script>
+</head>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Title -->
-    <title>Kevin Nyawakira | Full-stack Developer</title>
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-    <meta property="og:title" content="Kevin Nyawakira | Full-stack Developer">
-    <meta name="author" content="Kevin Nyawakira | Full-stack Developer">
-    <meta name="description" content="Full-Stack developer &amp; Online,Digital business Maker based in Kigali with 4 years of experience in Web Development"/>
-    <meta name="og:description" content="Full-Stack developer &amp; Online,Digital business Maker based in Kigali with 4 years of experience in Web Development"/>
-    <meta name="keywords" content="Kevin Nyawakira, kevin81767, Nyawakira, Rwandan developer, Rwandan coder, Kevin, Full-Stack Developer, Burundian developer, Burundian coder, African coder, The Kondor coder, Kevin_coder, Rwandan developer, Rwandan coder,"/>
-    <meta property="og:image" content="https://kevin81767.github.io/images/og_img.jpg" />
-    <link rel="stylesheet" href="css/main.css">
-    <!--Animate css-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.css">-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Oswald:700|Anton|Amatic+SC|Yanone+Kaffeesatz|Cuprum|Roboto+Condensed|PT+Sans+Narrow" rel="stylesheet">
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.js"></script>-->
-    <script src="js/smooth-scroll.js"></script>
-    <script src="js/smooth-scroll.min.js"></script>
-
-  </head>
-  <style>
-      .sticky-top{
-        position: fixed;
-        width:100%;
-    }
-
-    .bg-kev{
-      background: rgba(42, 44, 47,0.8);
-    }
-
-    .write{
-      text-align: center;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      padding:5px;
-      color: white;
-
-  }
-
-  .write p{
-      color:rgb(255, 255, 255);
-      font-family: 'Oswald', sans-serif;
-      font-size:1.5em;
-      background:rgba(67, 66, 66, 0.734);
-      border-radius:5px;
-      text-align: center;
-  }
-
-  .navbar-brand img{
-    width:75px;
-  }
-
-  .summary{
-    background-color: rgba(51, 51, 51, 0.974);
-    padding:5px;
-    box-shadow:0 1px 5px black;
-}
-  .summary h2{
-    text-align: center;
-  }
-  .summary p{
-    color:rgb(238, 237, 237);
-    font-family: 'Roboto Condensed', sans-serif;
-    font-size:1.2em;
-  }
-
-
-  .box > i,h5{
-      color:white;
-  }
-
-  /* Progress bars */
-  .progress{
-    background-color:rgba(48, 47, 47, 0.974);
-
-}
-
-.progress-bar{
-    background-color:rgba(28, 27, 27, 0.693);
-}
-
-/*certificate*/
-
-
-/*footer*/
-
-footer #me{
-  color:rgba(160, 155, 155, 0.6);
-  text-decoration:none;
-}
-footer #me:hover{
-  color:rgba(0,0,0,0.3);
-    border:none;
-}
-
-footer .social-links a
-{
-    display:inline-block;
-    color:rgba(160, 155, 155, 0.6);
-    text-decoration:none;
-    padding-right:10px;
-    padding-left: 10px;
-    font-size:1.6rem;
-    -webkit-transition:all .3s ease-in-out;
-    transition:all .3s ease-in-out;
-
-}
-footer {
-  padding:4px;
-  background:rgb(29, 29, 29);
-  margin:4px;
-}
-
-footer a:hover{
-    color:rgba(0,0,0,0.3);
-    border:none;
-}
-
-footer  p{
-  text-align:center;
-  color:darkgray;
-  font-size:1.1em;
-}
-
-footer{
-  font-family: 'Cuprum', sans-serif;
-}
-
-.certificate{
-
-      display:grid;
-      grid-gap: 20px;
-      grid-template-columns:repeat(auto-fit,minmax(200px, 1fr));
-      box-shadow: 0 1px 5px black;
-      padding:20px;
-  }
-  @media screen and (max-width:768px){
-    .summary .part-img{
-
-      width: 65%;
-      margin:auto;
-    }
-
-    .summary .part-summary{
-      text-align:center;
-    }
-
-
-}
-@media screen and (max-width:450px){
-  .write{
-    width: 100%;
-    margin:auto;
-  }
-}
-
-
-
-  </style>
-  <body>
-    <!--Image banner-->
-    <div class="bg" id="particles-js">
-      <div class="write">
-        <p id="kevin-do"></p>
-      </div>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="terminal-loader">
+            <div class="loader-text">
+                <div class="line">root@hackbox:~# initializing_system...</div>
+                <div class="line">root@hackbox:~# loading_profile_kevin_nyawakira...</div>
+                <div class="line">root@hackbox:~# establishing_secure_connection...</div>
+                <div class="line">root@hackbox:~# access_granted</div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
     </div>
-    <!--navbar fixed top-->
-    <div class="sticky-top">
-      <nav class="navbar navbar-expand-sm bg-kev navbar-dark">
-            <!-- Brand -->
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="prompt">root@kevin:~#</span>
+                <img src="images/logo4.png" alt="Kevin Logo" class="nav-logo">
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link">./home</a>
+                <a href="#about" class="nav-link">./about</a>
+                <a href="#skills" class="nav-link">./skills</a>
+                <a href="#services" class="nav-link">./services</a>
+                <a href="#portfolio" class="nav-link">./portfolio</a>
+                <a href="#contact" class="nav-link">./contact</a>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="matrix-rain"></div>
+            <div class="grid-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="btn-close"></span>
+                        <span class="btn-minimize"></span>
+                        <span class="btn-maximize"></span>
+                    </div>
+                    <div class="terminal-title">kevin@hackbox: ~</div>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-line">
+                        <span class="prompt">kevin@hackbox:~$</span>
+                        <span class="command" id="typewriter"></span>
+                        <span class="cursor"></span>
+                    </div>
+                    <div class="output" id="output"></div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
         <div class="container">
-          <a class="navbar-brand" href="index.html"><img src="images/logo4.png" alt="" ></a>
-
-          <!-- Toggler/collapsibe Button -->
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-
-          <!-- Navbar links -->
-          <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="#about">ABOUT</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#services">SERVICES</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#portfolio">PORTFOLIO</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#contact">CONTACT</a>
-              </li>
-            </ul>
-          </div>
+            <div class="section-header">
+                <span class="section-prompt">kevin@hackbox:~$ cat about.md</span>
+                <h2 class="section-title">About Me</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="image-frame">
+                        <img src="images/Nyawakira-Kevin-pp.jpeg" alt="Kevin Nyawakira" class="profile-img">
+                        <div class="image-overlay">
+                            <div class="scan-line"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <div class="text-block">
+                        <p>With a transition from Web Developer to Cybersecurity Expert, I'm a Freelance Full Stack Developer and Ethical Hacker based in Kigali with 4+ years of experience building secure web applications and conducting penetration testing for various organizations.</p>
+                        
+                        <p>I specialize in finding vulnerabilities in networks and software systems, helping organizations strengthen their security posture. My passion for technology drives me to continuously learn and build innovative solutions.</p>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-number">4+</div>
+                                <div class="stat-label">Years Experience</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">50+</div>
+                                <div class="stat-label">Projects Completed</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">100+</div>
+                                <div class="stat-label">Security Assessments</div>
+                            </div>
+                        </div>
+                        
+                        <div class="download-cv">
+                            <a href="CV-Kevin_Nyawakira.pdf" class="btn-primary">
+                                <i class="fas fa-download"></i>
+                                Download CV
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </nav>
-    </div>
+    </section>
 
-    <div class="container" id="about">
-<!--Summary section-->
-      <h1 id="title-section">ABOUT</h4>
-      <section class="summary">
-        <div class="row">
-          <div class="col-md-3 part-img">
-              <img src="images/Nyawakira-Kevin-pp.jpeg" alt="" id="img-kevin" class="rounded-circle img-fluid">
-          </div>
-          <div class="col-md-9 part-summary">
-            <p>
-              With a transition from Web Developer to Pentester, I'm a Freelance Full Stack Developer and Hacker (White Hat Hacker) based in Kigali with 4 years of experience building web applications for small and medium businesses and reporting security issues in different institutions' systems and software. I like breaking and find loopholes in network and softwares since i was 14. I love every things related to technology and like to learn and build new things.
-            </p>
-            <p>You can find my CV <a href="CV-Kevin_Nyawakira.pdf">Here(PDF format)</a></p>
-          </div>
+    <!-- Skills Section -->
+    <section id="skills" class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-prompt">kevin@hackbox:~$ ./scan_skills.sh --all</span>
+                <h2 class="section-title">Technical Arsenal</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-code"></i>
+                        Programming Languages
+                    </h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">HTML/CSS</span>
+                                <span class="skill-level">100%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="100"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">JavaScript</span>
+                                <span class="skill-level">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">PHP</span>
+                                <span class="skill-level">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Python</span>
+                                <span class="skill-level">75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="75"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Java</span>
+                                <span class="skill-level">70%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="70"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-shield-alt"></i>
+                        Cybersecurity
+                    </h3>
+                    <div class="security-skills">
+                        <div class="security-item">
+                            <i class="fas fa-bug"></i>
+                            <span>Penetration Testing</span>
+                        </div>
+                        <div class="security-item">
+                            <i class="fas fa-search"></i>
+                            <span>Vulnerability Assessment</span>
+                        </div>
+                        <div class="security-item">
+                            <i class="fas fa-globe"></i>
+                            <span>Web App Security</span>
+                        </div>
+                        <div class="security-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>Mobile Security</span>
+                        </div>
+                        <div class="security-item">
+                            <i class="fas fa-eye"></i>
+                            <span>OSINT</span>
+                        </div>
+                        <div class="security-item">
+                            <i class="fas fa-terminal"></i>
+                            <span>Reverse Engineering</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </section>
-<br>
-<!--Services-->
-      <section class="services" id="services">
-          <h1 id="title-section">FREELANCE SERVICES</h4>
-        <div class="boxes">
-          <div class="box sec1 wow zoomIn" data-wow-delay="1s">
-            <i class="fas fa-cogs fa-3x"></i>
-            <h5>DEVELOPMENT & DESIGN</h5>
-            <p>I establish a lineup of effective Software design and Software development services to facilitate the growth of any kind of business. </p>
-          </div>
-          <div class="box sec2 wow zoomIn" data-wow-delay="1s">
-            <i class="fas fa-mobile-alt fa-3x"></i>  <i class="fas fa-laptop fa-3x"></i>
-            <h5>MOBILE WEB DEVELOPMENT</h5>
-            <p>We're no longer moving into the mobile era; we're in it. That's why I develop each website to be responsive and fit all screen's devices. </p>
-          </div>
-          <div class="box sec3 wow zoomIn" data-wow-delay="1s">
-            <i class="fa fa-bullhorn fa-3x"></i>
-            <h5>Social Media Marketing</h5>
-            <p>"Marketing is telling the world you're a rock star"</p>
-            <p>I provide online marketing service by advertising your product or business on Social Media</p>
-          </div>
-          <div class="box sec4 wow zoomIn" data-wow-delay="1s">
-            <i class="fa fa-bolt fa-3x"></i>
-            <h5>Web Penetration testing</h5>
-            <p>Want to secure your Web Application ?</p>
-            <p>I conduct security assessment designed to assess the architecture, design and configuration of web applications. Assessments are conducted to identify cyber security risks that could lead to unauthorised access and/or data exposure.</p>
-          </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-prompt">kevin@hackbox:~$ ls -la ./services/</span>
+                <h2 class="section-title">Services</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="service-title">Web Development</h3>
+                    <p class="service-description">Full-stack web development with modern frameworks and secure coding practices.</p>
+                    <div class="service-features">
+                        <span class="feature-tag">React</span>
+                        <span class="feature-tag">Node.js</span>
+                        <span class="feature-tag">PHP</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="service-title">Penetration Testing</h3>
+                    <p class="service-description">Comprehensive security assessments to identify and fix vulnerabilities in your systems.</p>
+                    <div class="service-features">
+                        <span class="feature-tag">Web Apps</span>
+                        <span class="feature-tag">Networks</span>
+                        <span class="feature-tag">Mobile</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="service-title">Mobile Development</h3>
+                    <p class="service-description">Responsive mobile applications with security-first approach and modern UI/UX.</p>
+                    <div class="service-features">
+                        <span class="feature-tag">iOS</span>
+                        <span class="feature-tag">Android</span>
+                        <span class="feature-tag">PWA</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3 class="service-title">Digital Marketing</h3>
+                    <p class="service-description">Strategic social media marketing and online presence optimization for businesses.</p>
+                    <div class="service-features">
+                        <span class="feature-tag">SEO</span>
+                        <span class="feature-tag">Social Media</span>
+                        <span class="feature-tag">Analytics</span>
+                    </div>
+                </div>
+            </div>
         </div>
-      </section>
-<br>
-<!-- Skills -->
-      <section class="skills">
-          <h1 id="title-section">SKILLS</h4>
-        <div class="all-skills">
-          <div class="languages">
-            <p id="title">Programming languages:</p>
-            <p>HTML/CSS</p>
-            <div class="progress">
-              <div class="progress-bar" style="width:100%">100%</div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-prompt">kevin@hackbox:~$ find ./projects -type f -name "*.exe"</span>
+                <h2 class="section-title">Portfolio</h2>
             </div>
-            <p>PHP</p>
-            <div class="progress">
-              <div class="progress-bar" style="width:90%">90%</div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="images/meetme.jpg" alt="MeetMe Platform">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>MeetMe Platform</h3>
+                                <p>Car & house rental platform</p>
+                                <div class="tech-stack">
+                                    <span>PHP</span>
+                                    <span>MySQL</span>
+                                    <span>jQuery</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="images/transit.jpg" alt="Transit Flash">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Transit Flash</h3>
+                                <p>Tourist car rental service</p>
+                                <div class="tech-stack">
+                                    <span>PHP</span>
+                                    <span>Account Kit</span>
+                                    <span>jQuery UI</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="images/zco.jpg" alt="ZCO Supply">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>ZCO Supply</h3>
+                                <p>Online meat delivery service</p>
+                                <div class="tech-stack">
+                                    <span>PHP</span>
+                                    <span>Facebook API</span>
+                                    <span>Payment Gateway</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="images/devSolution.jpg" alt="Dev Diary">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Dev Diary</h3>
+                                <p>Developer community platform</p>
+                                <div class="tech-stack">
+                                    <span>React</span>
+                                    <span>PHP</span>
+                                    <span>Account Kit</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="images/intore-security.jpg" alt="Intore Security">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Intore Security Lab</h3>
+                                <p>Cybersecurity company website</p>
+                                <div class="tech-stack">
+                                    <span>HTML5</span>
+                                    <span>CSS3</span>
+                                    <span>JavaScript</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="images/herbmadz.jpg" alt="Herbmadz">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Herbmadz Satellite</h3>
+                                <p>Satellite services website</p>
+                                <div class="tech-stack">
+                                    <span>HTML5</span>
+                                    <span>CSS3</span>
+                                    <span>JavaScript</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <p>JAVASCRIPT</p>
-            <div class="progress">
-              <div class="progress-bar" style="width:90%">90%</div>
+            
+            <div class="github-link">
+                <a href="https://github.com/kevin81767" class="btn-secondary">
+                    <i class="fab fa-github"></i>
+                    View More on GitHub
+                </a>
             </div>
-            <p>PYTHON</p>
-            <div class="progress">
-              <div class="progress-bar" style="width:75%">75%</div>
-            </div>
-            <p>JAVA</p>
-            <div class="progress">
-              <div class="progress-bar" style="width:70%">70%</div>
-            </div>
-            <p>C</p>
-            <div class="progress">
-              <div class="progress-bar" style="width:70%">70%</div>
-            </div>
-            <p>Ruby</p>
-            <div class="progress">
-              <div class="progress-bar" style="width:55%">55%</div>
-            </div>
-          </div>
-          <div class="frameworks">
-            <p id="title">Cybersecurity:</p>
-            <ul>
-              <li><i class="fas fa-chevron-circle-right"></i> Internal/External Penetration Testing</li>
-              <li><i class="fas fa-chevron-circle-right"></i> Vulnerability Management</li>
-              <li><i class="fas fa-chevron-circle-right"></i> Web Application Penetraion testing </li>
-              <li><i class="fas fa-chevron-circle-right"></i> Mobile Penetration Testing</li>
-              <li><i class="fas fa-chevron-circle-right"></i> Binary Analysis</li>
-              <li><i class="fas fa-chevron-circle-right"></i> Osint</li>
-              <li><i class="fas fa-chevron-circle-right"></i> Bash & Shell Scripting</li>
-              <li><i class="fas fa-chevron-circle-right"></i> Reverse Engineering</li>
-              <li><i class="fas fa-chevron-circle-right"></i> Exploit Development</li>
-            </ul>
-          </div>
         </div>
-      </section>
-      <br>
-<!-- Certification & Accomplishments -->
-      <div class="certification">
-          <h1 id="title-section">CERTIFICATION & ACCOMPLISHMENTS</h4>
-          <div class="certificate">
-            <div class="cert cert1 wow zoomIn" data-wow-delay="1s">
-              <img src="images/Hour-Of-Code.jpg" alt="" class="img-fluid rounded">
-              <p>Hour Of Code successful Completion on <a href="code.org">code.org</a></p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-prompt">kevin@hackbox:~$ ./contact.sh --establish-connection</span>
+                <h2 class="section-title">Get In Touch</h2>
             </div>
-            <div class="cert cert1 wow zoomIn" data-wow-delay="1.3s">
-              <img src="images/Google-Africa-Scholarship.jpg" alt="" class="img-fluid rounded">
-              <p>Google Africa Challenge Scholarship for the <strong>Android developer track</strong> </p>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Let's Connect</h3>
+                    <p>Ready to secure your digital assets or build something amazing? Let's discuss your project.</p>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <span>kevin@hackbox.dev</span>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fas fa-phone"></i>
+                            <span>+250 784 438 186</span>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Kigali, Rwanda</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/kevin-nyawakira-558307129/" class="social-link">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/kevin81767" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.facebook.com/nyawakira.kevin" class="social-link">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/kerminal_/" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="tel:+250784438186" class="social-link">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                </div>
             </div>
-            <div class="cert cert1 wow zoomIn" data-wow-delay="1.3s">
-              <img src="images/Kevin-Nyawakira-Web-Testing.jpg" alt="" class="img-fluid rounded">
-              <p>Ethical Hacking: <strong>Web Penetration testing</strong> certificate provided by <strong>Linkedin</strong></p>
-            </div>
-            <div class="cert cert1 wow zoomIn" data-wow-delay="1.3s">
-              <img src="images/Kevin-Nyawakira-Linux-Certificate.jpg" alt="" class="img-fluid rounded">
-              <p>Linux Shell scripting certificate provided by <strong>linkedin Learning</strong> </p>
-            </div>
-            <div class="cert cert1 wow zoomIn" data-wow-delay="1.3s">
-              <img src="images/Kevin-Nyawakira-CyberIncidence.jpg" alt="" class="img-fluid rounded">
-              <p>Cyber-Incident response certificate provided by <strong>linkedin Learning</strong> </p>
-            </div>
-            <div class="cert cert1 wow zoomIn" data-wow-delay="1.3s">
-              <img src="images/Kevin-Nyawakira-Wireshark-certificate.jpg" alt="" class="img-fluid rounded">
-              <p>Wireshark : <strong>Malware and Forensic</strong> certificate provided by <strong>linkedin Learning</strong> </p>
-            </div>
-            <div class="cert cert1 wow zoomIn" data-wow-delay="1.3s">
-              <img src="images/Kevin-Nyawakira-LearingDjango.jpg" alt="" class="img-fluid rounded">
-              <p>Python : <strong>Django Framework</strong> certificate provided by <strong>linkedin Learning</strong> </p>
-            </div>
-            <div class="cert cert1 wow zoomIn" data-wow-delay="1.3s">
-              <img src="images/Kevin-Nyawakira_Android App Penetration Testing.jpg" alt="" class="img-fluid rounded">
-              <p>Mobile Security: <strong>Android Penetration Testing</strong> certificate provided by <strong>linkedin Learning</strong> </p>
-            </div>
-            <div class="cert cert1 wow zoomIn" data-wow-delay="1.3s">
-              <img src="images/Kevin-Nyawakira_Soft Skills for Information Security Professionals.jpg" alt="" class="img-fluid rounded">
-              <p><strong>Soft Skills in information Security</strong> certificate provided by <strong>linkedin Learning</strong> </p>
-            </div>
-            <div class="cert cert1 wow zoomIn" data-wow-delay="1.3s">
-              <img src="images/Kevin-Nyawakira_Using Python for Automation.jpg" alt="" class="img-fluid rounded">
-              <p><strong>Python For Automation</strong> certificate provided by <strong>linkedin Learning</strong> </p>
-            </div>
-          </div>
         </div>
-<!-- Portfolio -->
-      <section class="portfolio" id="portfolio">
-          <h1 id="title-section">PORTFOLIO</h4>
-          <div class="all-portfolio">
-              <div class="card wow slideInUp" data-wow-delay="1s">
-                <img src="images/meetme.jpg" alt="" class="rounded img-responsive">
-                <div class="card-content">
-                  <p>Platform for buying,rent cars or house</p>
-                  <blockquote>-PHP,HTML,CSS,JQUERY</blockquote>
-                  <a href="#"><i class="fas fa-link fa-xs"></i> meetme.rw</a>
-                </div>
-              </div>
-              <div class="card wow slideInUp" data-wow-delay="1.5s">
-                <img src="images/transit.jpg" alt="" class="rounded img-fluid">
-                <div class="card-content">
-                  <p>Online car renting for tourists in Kigali</p>
-                  <blockquote>-PHP,HTML,CSS,JQUERY,JQUERY UI,ACCOUNT KIT</blockquote>
-                  <a href="#"><i class="fas fa-link fa-xs"></i> transitflash.rw</a>
-                </div>
-              </div>
-              <div class="card wow slideInUp" data-wow-delay="2s">
-                <img src="images/zco.jpg" alt="" class="rounded img-fluid">
-                <div class="card-content">
-                  <p>Online meat shopping and delivery services</p>
-                  <blockquote>-PHP,HTML,CSS,JQUERY,JQUERY UI,ACCOUNT KIT,FACEBOOK LOGIN</blockquote>
-                  <a href="#"><i class="fas fa-link fa-xs"></i> zcosupply.com</a>
-                </div>
-              </div>
-              <div class="card wow slideInUp" data-wow-delay="2.5s">
-                <img src="images/devSolution.jpg" alt="" class="rounded img-fluid">
-                <div class="card-content">
-                  <p>A developer diary. Project i made in Facebook developer circle competition in Kigali in 2017</p>
-                  <blockquote>-PHP,HTML,CSS,JQUERY,JQUERY UI,ACCOUNT KIT,REACTJS</blockquote>
-                  <a href="#"><i class="fas fa-link fa-xs"></i>  devdiary.com</a>
-                </div>
-              </div>
-              <div class="card wow slideInUp" data-wow-delay="2.5s">
-                <img src="images/intore-security.jpg" alt="" class="rounded img-fluid">
-                <div class="card-content">
-                  <p>Intore Security Lab Website</p>
-                  <blockquote>-HTML,CSS, JAVASCRIPT</blockquote>
-                  <a href="#"><i class="fas fa-link fa-xs"></i>  intoresec-lab.com</a>
-                </div>
-              </div>
-              <div class="card wow slideInUp" data-wow-delay="2.5s">
-                <img src="images/herbmadz.jpg" alt="" class="rounded img-fluid">
-                <div class="card-content">
-                  <p>Herbmadz Satellite website</p>
-                  <blockquote>-HTML, CSS,JAVASCRIPT</blockquote>
-                  <a href="#"><i class="fas fa-link fa-xs"></i>  herbmadzsatellite.com</a>
-                </div>
-              </div>
-          </div>
-          <br>
-          <p id="link-git"><button class="git-link"><a href="https://github.com/kevin81767">SEE MORE ON MY GITHUB</a></button></p>
-      </section>
+    </section>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <span class="prompt">kevin@hackbox:~$</span>
+                    <span>echo "Crafted with ❤️ by Kevin Nyawakira"</span>
+                </div>
+                <div class="footer-year">
+                    <span>© 2025 All rights reserved</span>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-<!--Contact-->
-
-<!--footer-->
-<footer>
-  <p>Handmade by <a id="me" href="https://github.com/kevin81767">Me</a></p>
-  <div class="social-links">
-    <p>
-      <a href="https://www.linkedin.com/in/kevin-nyawakira-558307129/"><i class="fab fa-linkedin-in"></i></a>
-      <a href="https://github.com/kevin81767"><i class="fab fa-github"></i></a>
-      <a href="https://www.facebook.com/nyawakira.kevin"><i class="fab fa-facebook-f"></i></a>
-      <a href="https://www.instagram.com/kerminal_/"><i class="fab fa-instagram"></i></a>
-      <a href="tel:+250784438186"><i class="fa fa-phone"></i></a>
-    </p>
-  </div>
-</footer>
-
-    </div>
-    <!--Wow.min.js-->
-    <script src="js/wow.min.js"></script>
-    <!-- particleJS -->
-    <script src="js/particles.min.js"></script>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <!-- Font awesome 5.0.7 -->
-    <script src="css/fontawesome-free-5.0.7/svg-with-js/js/fontawesome-all.js"></script>
-    <script>
-      var i = 0;
-      var txt = "Software Developer - Security Researcher - Penetration Tester"; /* The text */
-      var speed = 100; /* The speed/duration of the effect in milliseconds */
-
-      function typeWriter() {
-        if (i < txt.length) {
-          document.getElementById("kevin-do").innerHTML += txt.charAt(i);
-          i++;
-          setTimeout(typeWriter, speed);
-        }
-      }
-      typeWriter();
-    </script>
-    <script>
-      particlesJS.load('particles-js','particles.json', function(){
-        console.log('Particles.json loaded...');
-      });
-    </script>
-    <script>
-      function PicChange(){
-        document.getElementById("img-kevin").src="images/kevin3.jpg";
-      }
-    </script>
-    <script>
-      new WOW().init();
-    </script>
-    <script>
-      var scroll = new SmoothScroll('a[href*="#"]');
-    </script>
-  </body>
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+</body>
 </html>
