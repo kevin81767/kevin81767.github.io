@@ -1161,3 +1161,317 @@ body {
         padding: 0 15px;
     }
 }
+
+/* Enhanced Matrix Background for full-page coverage */
+.matrix-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background: var(--bg-primary);
+    pointer-events: none; /* Ensure it doesn't interfere with clicks */
+}
+
+.matrix-column {
+    position: absolute;
+    top: -100%;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.2;
+    color: var(--primary-color);
+    text-shadow: 0 0 5px var(--primary-color);
+    animation: matrixFall linear infinite;
+    opacity: 0.3; /* Lower default opacity for better readability */
+    pointer-events: none;
+    height: 100vh; /* Ensure columns are tall enough */
+}
+
+.matrix-column.bright {
+    color: var(--text-primary);
+    text-shadow: 0 0 10px var(--primary-color);
+    opacity: 0.6; /* Brighter but still readable */
+}
+
+@keyframes matrixFall {
+    0% { 
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    10% { opacity: 0.3; }
+    90% { opacity: 0.3; }
+    100% { 
+        transform: translateY(200vh); /* Longer fall for full page */
+        opacity: 0;
+    }
+}
+
+/* Ensure section backgrounds have some opacity for matrix visibility */
+.section {
+    position: relative;
+    z-index: 1;
+}
+
+.section-dark {
+    background: rgba(0, 11, 22, 0.85); /* Semi-transparent for matrix visibility */
+    backdrop-filter: blur(3px); /* Slight blur for better readability */
+}
+
+.section:not(.section-dark) {
+    background: rgba(0, 20, 40, 0.75); /* Semi-transparent for matrix visibility */
+    backdrop-filter: blur(2px);
+}
+
+/* Ensure content remains readable with matrix background */
+.section-title, .section-subtitle, p, h1, h2, h3, h4, h5, h6 {
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8); /* Text shadow for readability */
+}
+
+/* Enhanced Terminal Styling */
+.terminal-window {
+    background: rgba(0, 11, 22, 0.95);
+    border: 2px solid var(--primary-color);
+    border-radius: 12px;
+    width: 700px;
+    max-width: 90vw;
+    min-height: 400px;
+    box-shadow: 
+        0 0 30px var(--shadow-color),
+        inset 0 0 50px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(15px);
+    position: relative;
+    overflow: hidden;
+    z-index: 10; /* Ensure terminal is above matrix */
+}
+
+.terminal-window::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 255, 136, 0.03) 2px,
+            rgba(0, 255, 136, 0.03) 4px
+        );
+    pointer-events: none;
+    z-index: 1;
+}
+
+.terminal-header {
+    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px 10px 0 0;
+    position: relative;
+    z-index: 2;
+}
+
+.terminal-title {
+    font-family: var(--font-mono);
+    color: var(--primary-color);
+    font-size: 13px;
+    font-weight: 600;
+    text-shadow: 0 0 5px var(--primary-color);
+}
+
+.terminal-body {
+    padding: 20px;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.6;
+    max-height: 350px;
+    overflow-y: auto;
+    position: relative;
+    z-index: 2;
+}
+
+.terminal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+.terminal-line {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.prompt {
+    color: var(--success-color);
+    font-weight: bold;
+    margin-right: 8px;
+    text-shadow: 0 0 3px var(--success-color);
+}
+
+.command {
+    color: var(--text-primary);
+    flex: 1;
+}
+
+.cursor {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background: var(--primary-color);
+    animation: blink 1s infinite;
+    margin-left: 2px;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+.output {
+    color: var(--secondary-color);
+    margin: 10px 0;
+    padding-left: 20px;
+    white-space: pre-wrap;
+}
+
+.output.error {
+    color: var(--accent-color);
+}
+
+.output.success {
+    color: var(--success-color);
+}
+
+.output.info {
+    color: var(--info-color);
+}
+
+/* Interactive Terminal Input */
+.terminal-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    flex: 1;
+    caret-color: var(--primary-color);
+}
+
+.terminal-input::selection {
+    background: var(--primary-color);
+    color: var(--bg-primary);
+}
+
+/* Skills Display in Terminal */
+.skill-display {
+    margin: 10px 0;
+}
+
+.skill-category-terminal {
+    color: var(--warning-color);
+    font-weight: bold;
+    margin: 15px 0 8px 0;
+    text-decoration: underline;
+}
+
+.skill-item-terminal {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+    padding: 2px 0;
+}
+
+.skill-name-terminal {
+    color: var(--text-primary);
+}
+
+.skill-level-terminal {
+    color: var(--success-color);
+    font-weight: bold;
+}
+
+.skill-bar-terminal {
+    margin: 2px 0;
+    height: 4px;
+    background: var(--bg-tertiary);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.skill-progress-terminal {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 2px;
+    transition: width 0.8s ease;
+}
+
+/* Command suggestions */
+.command-suggestion {
+    color: var(--text-muted);
+    font-style: italic;
+    margin: 5px 0;
+}
+
+/* ASCII Art styling */
+.ascii-art {
+    color: var(--primary-color);
+    font-family: monospace;
+    font-size: 12px;
+    line-height: 1;
+    text-shadow: 0 0 5px var(--primary-color);
+    margin: 10px 0;
+}
+
+/* Oh My Zsh prompt styling */
+.zsh-prompt {
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+}
+
+.zsh-user {
+    color: var(--success-color);
+    font-weight: bold;
+}
+
+.zsh-at {
+    color: var(--text-muted);
+}
+
+.zsh-host {
+    color: var(--info-color);
+    font-weight: bold;
+}
+
+.zsh-path {
+    color: var(--warning-color);
+}
+
+.zsh-git {
+    color: var(--accent-color);
+    margin-left: 5px;
+}
+
+.zsh-arrow {
+    color: var(--primary-color);
+    font-weight: bold;
+    margin: 0 5px;
+    text-shadow: 0 0 5px var(--primary-color);
+}
