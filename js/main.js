@@ -2,37 +2,37 @@
 
 // Theme switcher functionality
 const themes = {
-    agnoster: {
-        name: 'Agnoster',
+    professional: {
+        name: 'Professional',
         class: '',
         prompt: '➜',
         colors: {
-            user: '#859900',
-            host: '#268bd2',
-            path: '#b58900',
-            git: '#dc322f'
+            user: '#4f46e5',
+            host: '#06b6d4',
+            path: '#10b981',
+            git: '#f59e0b'
         }
     },
-    powerlevel10k: {
-        name: 'Powerlevel10k',
-        class: 'powerlevel10k',
-        prompt: '',
+    blueOcean: {
+        name: 'Blue Ocean',
+        class: 'blue-ocean',
+        prompt: '🌊',
         colors: {
-            user: '#5fff00',
-            host: '#00d7ff',
-            path: '#ffff00',
-            git: '#ff5f00'
+            user: '#0ea5e9',
+            host: '#3b82f6',
+            path: '#8b5cf6',
+            git: '#10b981'
         }
     },
-    dracula: {
-        name: 'Dracula',
-        class: 'dracula',
-        prompt: '🧛',
+    warmPro: {
+        name: 'Warm Professional',
+        class: 'warm-pro',
+        prompt: '🔥',
         colors: {
-            user: '#50fa7b',
-            host: '#bd93f9',
-            path: '#f1fa8c',
-            git: '#ff79c6'
+            user: '#7c3aed',
+            host: '#f59e0b',
+            path: '#06b6d4',
+            git: '#10b981'
         }
     }
 };
@@ -87,7 +87,7 @@ const terminalCommands = {
   ./cat <file>    - Display file contents
   ./theme <name>  - Change theme (agnoster, powerlevel10k, dracula)`,
 
-    './whoami': () => 'kevin_nyawakira',
+    './whoami': () => 'kermin@l',
 
     './skills': () => {
         let output = 'Technical Skills Overview:\n\n';
@@ -114,22 +114,22 @@ Use './cat project_name' for more details.`,
   Email: kevin@hackbox.dev
   Phone: +250 784 438 186
   Location: Kigali, Rwanda
-  
+
   Social Links:
   • LinkedIn: linkedin.com/in/kevin-nyawakira-558307129/
   • GitHub: github.com/kevin81767
   • Instagram: @kerminal_`,
 
-    './neofetch': () => `                   -\`                kevin@hackbox
+    './neofetch': () => `                   -\`                kermin@l
                   .o+\`                 -----------------
                  \`ooo/                OS: Kali Linux x86_64
-                \`+oooo:               Host: HackBox Terminal
+                \`+oooo:               Host: Kermin@l Terminal
                \`+oooooo:              Kernel: 5.15.0-kali
                -+oooooo+:             Uptime: 2 hours, 42 mins
              \`/:-:++oooo+:            Packages: 2847 (dpkg)
             \`/++++/+++++++:           Shell: zsh 5.8.1
            \`/++++++++++++++:          Resolution: 1920x1080
-          \`/+++ooooooooooooo/\`        Terminal: hackbox-term
+          \`/+++ooooooooooooo/\`        Terminal: kermin@l-term
          ./ooosssso++osssssso+\`       CPU: Intel i7-10700K (16) @ 3.80GHz
         .oossssso-\`\`\`\`/ossssss+\`      GPU: NVIDIA GeForce RTX 3070
        -osssssso.      :ssssssso.     Memory: 4.2GiB / 32.0GiB
@@ -219,15 +219,7 @@ function createInteractiveTerminal() {
     // Create terminal interface
     const terminalInterface = document.createElement('div');
     terminalInterface.innerHTML = `
-        <div class="ascii-art">
-██╗  ██╗███████╗██╗   ██╗██╗███╗   ██╗
-██║ ██╔╝██╔════╝██║   ██║██║████╗  ██║
-█████╔╝ █████╗  ██║   ██║██║██╔██╗ ██║
-██╔═██╗ ██╔══╝  ╚██╗ ██╔╝██║██║╚██╗██║
-██║  ██╗███████╗ ╚████╔╝ ██║██║ ╚████║
-╚═╝  ╚═╝╚══════╝  ╚═══╝  ╚═╝╚═╝  ╚═══╝
-        </div>
-        <div class="output success">Welcome to Kevin's HackBox Terminal v2.1.0</div>
+        <div class="output success">Welcome to Kermin@l Terminal v2.1.0</div>
         <div class="output info">Type './help' for available commands</div>
         <div class="output">Last login: ${new Date().toLocaleString()}</div>
         <br>
@@ -241,13 +233,14 @@ function createInteractiveTerminal() {
     function createInputLine() {
         const inputLine = document.createElement('div');
         inputLine.className = 'terminal-line';
-        
-        const theme = themes[currentTheme];
+
+        const currentThemeKey = themeKeys[currentThemeIndex] || 'professional';
+        const theme = themes[currentThemeKey];
         inputLine.innerHTML = `
             <div class="zsh-prompt">
-                <span class="zsh-user">kevin</span>
+                <span class="zsh-user">kermin</span>
                 <span class="zsh-at">@</span>
-                <span class="zsh-host">hackbox</span>
+                <span class="zsh-host">l</span>
                 <span class="zsh-path">:~</span>
                 <span class="zsh-arrow">${theme.prompt}</span>
             </div>
@@ -595,19 +588,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Console welcome message with theme styling
     const currentTheme = localStorage.getItem('selectedTheme') || 'agnoster';
     console.log(`
-    %c██╗  ██╗███████╗██╗   ██╗██╗███╗   ██╗
-    ██║ ██╔╝██╔════╝██║   ██║██║████╗  ██║
-    █████╔╝ █████╗  ██║   ██║██║██╔██╗ ██║
-    ██╔═██╗ ██╔══╝  ╚██╗ ██╔╝██║██║╚██╗██║
-    ██║  ██╗███████╗ ╚████╔╝ ██║██║ ╚████║
-    ╚═╝  ╚═╝╚══════╝  ╚═══╝  ╚═╝╚═╝  ╚═══╝
-    
     %cWelcome to Kevin's Digital Domain
     %cCybersecurity Expert & Full-Stack Developer
-    %cCurrent Theme: ${themes[currentTheme].name}
-    
+    %cCurrent Theme: Professional
+
     %cType './help' for available commands...
-    `, 
+    `,
     'color: #268bd2; font-weight: bold;',
     'color: #2aa198; font-size: 16px;',
     'color: #859900;',
@@ -639,3 +625,208 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// Theme Switcher Implementation
+let currentThemeIndex = 0;
+const themeKeys = Object.keys(themes);
+
+function switchTheme() {
+    // Remove current theme class
+    const currentThemeKey = themeKeys[currentThemeIndex];
+    if (themes[currentThemeKey].class) {
+        document.documentElement.classList.remove(themes[currentThemeKey].class);
+    }
+
+    // Move to next theme
+    currentThemeIndex = (currentThemeIndex + 1) % themeKeys.length;
+    const newThemeKey = themeKeys[currentThemeIndex];
+
+    // Apply new theme class
+    if (themes[newThemeKey].class) {
+        document.documentElement.classList.add(themes[newThemeKey].class);
+    }
+
+    // Save theme preference
+    localStorage.setItem('preferred-theme', newThemeKey);
+
+    // Show theme change notification
+    showThemeNotification(themes[newThemeKey].name);
+}
+
+function showThemeNotification(themeName) {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = 'theme-notification';
+    notification.innerHTML = `
+        <i class="fas fa-palette"></i>
+        <span>Theme switched to: ${themeName}</span>
+    `;
+
+    // Add notification styles
+    notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        background: var(--bg-glass);
+        border: 2px solid var(--border-accent);
+        color: var(--text-primary);
+        padding: 15px 20px;
+        border-radius: 8px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 0 25px var(--glow-primary);
+        z-index: 10000;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        font-family: var(--font-mono);
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    `;
+
+    document.body.appendChild(notification);
+
+    // Animate in
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+
+    // Animate out and remove
+    setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 300);
+    }, 2000);
+}
+
+// Initialize theme switcher
+function initThemeSwitcher() {
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', switchTheme);
+    }
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('preferred-theme');
+    if (savedTheme && themes[savedTheme]) {
+        currentThemeIndex = themeKeys.indexOf(savedTheme);
+        if (themes[savedTheme].class) {
+            document.documentElement.classList.add(themes[savedTheme].class);
+        }
+    }
+}
+
+// Initialize particles.js
+function initParticles() {
+    if (typeof particlesJS !== 'undefined') {
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": ["#4f46e5", "#06b6d4", "#10b981"]
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#4f46e5",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 6,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 400,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    }
+}
+
+// Initialize theme switcher when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initThemeSwitcher();
+    initParticles();
+});

@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Kevin Nyawakira | Cybersecurity Expert & Full-Stack Developer</title>
+    <title>Kevin Nyawakira | Application Security Engineer & Security Researcher</title>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-    
+
     <!-- Meta tags -->
-    <meta name="description" content="Cybersecurity Expert & Full-Stack Developer specializing in penetration testing and secure web applications"/>
-    <meta property="og:title" content="Kevin Nyawakira | Cybersecurity Expert">
-    <meta property="og:description" content="Cybersecurity Expert & Full-Stack Developer specializing in penetration testing and secure web applications"/>
+    <meta name="description" content="Application Security Engineer & Security Researcher specializing in vulnerability assessment, DevSecOps, and security automation"/>
+    <meta property="og:title" content="Kevin Nyawakira | Application Security Engineer">
+    <meta property="og:description" content="Application Security Engineer & Security Researcher specializing in vulnerability assessment, DevSecOps, and security automation"/>
     <meta property="og:image" content="https://kevin81767.github.io/images/og_img.jpg" />
     
     <!-- Fonts -->
@@ -36,10 +36,10 @@
     <div class="loading-screen" id="loadingScreen">
         <div class="terminal-loader">
             <div class="loader-text">
-                <div class="line">root@hackbox:~# initializing_system...</div>
-                <div class="line">root@hackbox:~# loading_profile_kevin_nyawakira...</div>
-                <div class="line">root@hackbox:~# establishing_secure_connection...</div>
-                <div class="line">root@hackbox:~# access_granted</div>
+                <div class="line">kermin@l:~# initializing_system...</div>
+                <div class="line">kermin@l:~# loading_profile_kevin_nyawakira...</div>
+                <div class="line">kermin@l:~# establishing_secure_connection...</div>
+                <div class="line">kermin@l:~# access_granted</div>
             </div>
             <div class="progress-bar">
                 <div class="progress-fill"></div>
@@ -51,7 +51,7 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-brand">
-                <span class="prompt">root@kevin:~#</span>
+                <span class="prompt">kermin@l:~#</span>
                 <img src="images/logo4.png" alt="Kevin Logo" class="nav-logo">
             </div>
             <div class="nav-menu" id="navMenu">
@@ -60,7 +60,14 @@
                 <a href="#skills" class="nav-link">./skills</a>
                 <a href="#services" class="nav-link">./services</a>
                 <a href="#portfolio" class="nav-link">./portfolio</a>
+                <a href="#experience" class="nav-link">./experience</a>
+                <a href="#media" class="nav-link">./media</a>
                 <a href="#contact" class="nav-link">./contact</a>
+                <div class="theme-switcher">
+                    <button id="themeToggle" class="theme-btn" title="Switch Theme">
+                        <i class="fas fa-palette"></i>
+                    </button>
+                </div>
             </div>
             <div class="nav-toggle" id="navToggle">
                 <span></span>
@@ -73,26 +80,40 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-background">
-            <div class="matrix-rain"></div>
+            <div id="particles-js"></div>
             <div class="grid-overlay"></div>
         </div>
         <div class="hero-content">
-            <div class="terminal-window">
-                <div class="terminal-header">
-                    <div class="terminal-buttons">
-                        <span class="btn-close"></span>
-                        <span class="btn-minimize"></span>
-                        <span class="btn-maximize"></span>
+            <div class="hero-main">
+                <div class="hero-profile">
+                    <div class="profile-container">
+                        <img src="images/Nyawakira-Kevin-pp.jpeg" alt="Kevin Nyawakira" class="hero-profile-img">
+                        <div class="profile-overlay">
+                            <div class="scan-line-hero"></div>
+                        </div>
+                        <div class="profile-info">
+                            <h1 class="profile-name">Kevin Nyawakira</h1>
+                            <p class="profile-title">Application Security Engineer | Security Researcher</p>
+                        </div>
                     </div>
-                    <div class="terminal-title">kevin@hackbox: ~</div>
                 </div>
-                <div class="terminal-body">
-                    <div class="terminal-line">
-                        <span class="prompt">kevin@hackbox:~$</span>
-                        <span class="command" id="typewriter"></span>
-                        <span class="cursor"></span>
+                <div class="terminal-window">
+                    <div class="terminal-header">
+                        <div class="terminal-buttons">
+                            <span class="btn-close"></span>
+                            <span class="btn-minimize"></span>
+                            <span class="btn-maximize"></span>
+                        </div>
+                        <div class="terminal-title">kermin@l: ~</div>
                     </div>
-                    <div class="output" id="output"></div>
+                    <div class="terminal-body">
+                        <div class="terminal-line">
+                            <span class="prompt">kermin@l:~$</span>
+                            <span class="command" id="typewriter"></span>
+                            <span class="cursor"></span>
+                        </div>
+                        <div class="output" id="output"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -105,41 +126,33 @@
     <section id="about" class="section">
         <div class="container">
             <div class="section-header">
-                <span class="section-prompt">kevin@hackbox:~$ cat about.md</span>
+                <span class="section-prompt">kermin@l:~$ cat about.md</span>
                 <h2 class="section-title">About Me</h2>
             </div>
             <div class="about-content">
-                <div class="about-image">
-                    <div class="image-frame">
-                        <img src="images/Nyawakira-Kevin-pp.jpeg" alt="Kevin Nyawakira" class="profile-img">
-                        <div class="image-overlay">
-                            <div class="scan-line"></div>
-                        </div>
-                    </div>
-                </div>
                 <div class="about-text">
                     <div class="text-block">
-                        <p>With a transition from Web Developer to Cybersecurity Expert, I'm a Freelance Full Stack Developer and Ethical Hacker based in Kigali with 4+ years of experience building secure web applications and conducting penetration testing for various organizations.</p>
-                        
-                        <p>I specialize in finding vulnerabilities in networks and software systems, helping organizations strengthen their security posture. My passion for technology drives me to continuously learn and build innovative solutions.</p>
+                        <p>Passionate Application Security Engineer with expertise in vulnerability assessment, penetration testing, and DevSecOps integration. Former web developer turned security specialist with a proven track record of building custom security tools and automating security processes.</p>
+
+                        <p>Experienced in red team assessments, security research, and training teams on offensive security principles. Currently exploring AI applications in cybersecurity and developing innovative solutions for security automation. Based in Kigali, Rwanda, working at IREMBO as an Application Security Engineer.</p>
                         
                         <div class="stats-grid">
                             <div class="stat-item">
-                                <div class="stat-number">4+</div>
+                                <div class="stat-number">8+</div>
                                 <div class="stat-label">Years Experience</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-number">50+</div>
+                                <div class="stat-number">75+</div>
                                 <div class="stat-label">Projects Completed</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-number">100+</div>
+                                <div class="stat-number">150+</div>
                                 <div class="stat-label">Security Assessments</div>
                             </div>
                         </div>
                         
                         <div class="download-cv">
-                            <a href="CV-Kevin_Nyawakira.pdf" class="btn-primary">
+                            <a href="kevinNyawakira_CV.pdf" class="btn-primary">
                                 <i class="fas fa-download"></i>
                                 Download CV
                             </a>
@@ -154,7 +167,7 @@
     <section id="skills" class="section section-dark">
         <div class="container">
             <div class="section-header">
-                <span class="section-prompt">kevin@hackbox:~$ ./scan_skills.sh --all</span>
+                <span class="section-prompt">kermin@l:~$ ./scan_skills.sh --all</span>
                 <h2 class="section-title">Technical Arsenal</h2>
             </div>
             <div class="skills-grid">
@@ -166,16 +179,34 @@
                     <div class="skills-list">
                         <div class="skill-item">
                             <div class="skill-info">
-                                <span class="skill-name">HTML/CSS</span>
-                                <span class="skill-level">100%</span>
+                                <span class="skill-name">Python</span>
+                                <span class="skill-level">95%</span>
                             </div>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-width="100"></div>
+                                <div class="skill-progress" data-width="95"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Bash</span>
+                                <span class="skill-level">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90"></div>
                             </div>
                         </div>
                         <div class="skill-item">
                             <div class="skill-info">
                                 <span class="skill-name">JavaScript</span>
+                                <span class="skill-level">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">HTML/CSS</span>
                                 <span class="skill-level">90%</span>
                             </div>
                             <div class="skill-bar">
@@ -184,29 +215,11 @@
                         </div>
                         <div class="skill-item">
                             <div class="skill-info">
-                                <span class="skill-name">PHP</span>
-                                <span class="skill-level">90%</span>
+                                <span class="skill-name">SQL</span>
+                                <span class="skill-level">80%</span>
                             </div>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-width="90"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Python</span>
-                                <span class="skill-level">75%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="75"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Java</span>
-                                <span class="skill-level">70%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="70"></div>
+                                <div class="skill-progress" data-width="80"></div>
                             </div>
                         </div>
                     </div>
@@ -227,20 +240,102 @@
                             <span>Vulnerability Assessment</span>
                         </div>
                         <div class="security-item">
-                            <i class="fas fa-globe"></i>
-                            <span>Web App Security</span>
+                            <i class="fas fa-code"></i>
+                            <span>SAST/DAST</span>
                         </div>
                         <div class="security-item">
-                            <i class="fas fa-mobile-alt"></i>
-                            <span>Mobile Security</span>
+                            <i class="fas fa-cogs"></i>
+                            <span>DevSecOps</span>
+                        </div>
+                        <div class="security-item">
+                            <i class="fas fa-robot"></i>
+                            <span>Security Automation</span>
                         </div>
                         <div class="security-item">
                             <i class="fas fa-eye"></i>
-                            <span>OSINT</span>
+                            <span>OSINT & Reconnaissance</span>
                         </div>
                         <div class="security-item">
+                            <i class="fas fa-users"></i>
+                            <span>Red Team Operations</span>
+                        </div>
+                        <div class="security-item">
+                            <i class="fas fa-brain"></i>
+                            <span>AI Security Research</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-tools"></i>
+                        Security Tools
+                    </h3>
+                    <div class="tools-grid">
+                        <div class="tool-item">
+                            <i class="fas fa-bug"></i>
+                            <span>Burp Suite</span>
+                        </div>
+                        <div class="tool-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>OWASP ZAP</span>
+                        </div>
+                        <div class="tool-item">
+                            <i class="fas fa-network-wired"></i>
+                            <span>Nmap</span>
+                        </div>
+                        <div class="tool-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>MobSF</span>
+                        </div>
+                        <div class="tool-item">
+                            <i class="fas fa-database"></i>
+                            <span>SQLMap</span>
+                        </div>
+                        <div class="tool-item">
                             <i class="fas fa-terminal"></i>
-                            <span>Reverse Engineering</span>
+                            <span>Metasploit</span>
+                        </div>
+                        <div class="tool-item">
+                            <i class="fas fa-search"></i>
+                            <span>Maltego</span>
+                        </div>
+                        <div class="tool-item">
+                            <i class="fas fa-eye"></i>
+                            <span>Shodan</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-cloud"></i>
+                        Infrastructure & DevOps
+                    </h3>
+                    <div class="tools-grid">
+                        <div class="tool-item">
+                            <i class="fab fa-docker"></i>
+                            <span>Docker</span>
+                        </div>
+                        <div class="tool-item">
+                            <i class="fab fa-aws"></i>
+                            <span>AWS</span>
+                        </div>
+                        <div class="tool-item">
+                            <i class="fab fa-linux"></i>
+                            <span>Linux Administration</span>
+                        </div>
+                        <div class="tool-item">
+                            <i class="fas fa-network-wired"></i>
+                            <span>Network Security</span>
+                        </div>
+                        <div class="tool-item">
+                            <i class="fas fa-user-secret"></i>
+                            <span>Tor Networks</span>
+                        </div>
+                        <div class="tool-item">
+                            <i class="fas fa-cogs"></i>
+                            <span>CI/CD Pipeline Security</span>
                         </div>
                     </div>
                 </div>
@@ -252,7 +347,7 @@
     <section id="services" class="section">
         <div class="container">
             <div class="section-header">
-                <span class="section-prompt">kevin@hackbox:~$ ls -la ./services/</span>
+                <span class="section-prompt">kermin@l:~$ ls -la ./services/</span>
                 <h2 class="section-title">Services</h2>
             </div>
             <div class="services-grid">
@@ -294,19 +389,20 @@
                         <span class="feature-tag">PWA</span>
                     </div>
                 </div>
-                
+
                 <div class="service-card">
                     <div class="service-icon">
-                        <i class="fas fa-bullhorn"></i>
+                        <i class="fas fa-user-shield"></i>
                     </div>
-                    <h3 class="service-title">Digital Marketing</h3>
-                    <p class="service-description">Strategic social media marketing and online presence optimization for businesses.</p>
+                    <h3 class="service-title">Security Consulting</h3>
+                    <p class="service-description">DevSecOps integration, security automation, and comprehensive security training for development teams.</p>
                     <div class="service-features">
-                        <span class="feature-tag">SEO</span>
-                        <span class="feature-tag">Social Media</span>
-                        <span class="feature-tag">Analytics</span>
+                        <span class="feature-tag">DevSecOps</span>
+                        <span class="feature-tag">Security Training</span>
+                        <span class="feature-tag">Automation</span>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -315,21 +411,42 @@
     <section id="portfolio" class="section section-dark">
         <div class="container">
             <div class="section-header">
-                <span class="section-prompt">kevin@hackbox:~$ find ./projects -type f -name "*.exe"</span>
+                <span class="section-prompt">kermin@l:~$ find ./projects -type f -name "*.exe"</span>
                 <h2 class="section-title">Portfolio</h2>
             </div>
             <div class="portfolio-grid">
                 <div class="portfolio-item">
                     <div class="portfolio-image">
-                        <img src="images/meetme.jpg" alt="MeetMe Platform">
+                        <div class="portfolio-icon ai-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
                         <div class="portfolio-overlay">
                             <div class="portfolio-info">
-                                <h3>MeetMe Platform</h3>
-                                <p>Car & house rental platform</p>
+                                <h3>Bambda That!</h3>
+                                <p>AI-powered GPT that converts plain English queries into precise Bambda filters for Burp Suite</p>
                                 <div class="tech-stack">
-                                    <span>PHP</span>
-                                    <span>MySQL</span>
-                                    <span>jQuery</span>
+                                    <span>AI</span>
+                                    <span>GPT</span>
+                                    <span>Security Automation</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <div class="portfolio-icon command-icon">
+                            <i class="fas fa-terminal"></i>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>K-command</h3>
+                                <p>Flask-based web application providing unified interface for reconnaissance, fuzzing, and scanning tools</p>
+                                <div class="tech-stack">
+                                    <span>Python</span>
+                                    <span>Flask</span>
+                                    <span>Security Tools</span>
                                 </div>
                             </div>
                         </div>
@@ -338,15 +455,36 @@
                 
                 <div class="portfolio-item">
                     <div class="portfolio-image">
-                        <img src="images/transit.jpg" alt="Transit Flash">
+                        <div class="portfolio-icon osint-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
                         <div class="portfolio-overlay">
                             <div class="portfolio-info">
-                                <h3>Transit Flash</h3>
-                                <p>Tourist car rental service</p>
+                                <h3>subPull</h3>
+                                <p>Bash script combining popular subdomain enumeration tools with Telegram integration</p>
                                 <div class="tech-stack">
-                                    <span>PHP</span>
-                                    <span>Account Kit</span>
-                                    <span>jQuery UI</span>
+                                    <span>Bash</span>
+                                    <span>Automation</span>
+                                    <span>OSINT</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <div class="portfolio-icon bug-bounty-icon">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>lazy-BBH</h3>
+                                <p>Comprehensive Bash installer for complete web application security testing environment</p>
+                                <div class="tech-stack">
+                                    <span>Bash</span>
+                                    <span>Environment Setup</span>
+                                    <span>Bug Bounty</span>
                                 </div>
                             </div>
                         </div>
@@ -355,66 +493,36 @@
                 
                 <div class="portfolio-item">
                     <div class="portfolio-image">
-                        <img src="images/zco.jpg" alt="ZCO Supply">
+                        <div class="portfolio-icon privacy-icon">
+                            <i class="fas fa-user-secret"></i>
+                        </div>
                         <div class="portfolio-overlay">
                             <div class="portfolio-info">
-                                <h3>ZCO Supply</h3>
-                                <p>Online meat delivery service</p>
+                                <h3>.onion Resume</h3>
+                                <p>Personal resume deployed as a Tor hidden service demonstrating privacy-focused web technologies</p>
                                 <div class="tech-stack">
-                                    <span>PHP</span>
-                                    <span>Facebook API</span>
-                                    <span>Payment Gateway</span>
+                                    <span>Tor</span>
+                                    <span>Privacy</span>
+                                    <span>Web Development</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="portfolio-item">
                     <div class="portfolio-image">
-                        <img src="images/devSolution.jpg" alt="Dev Diary">
-                        <div class="portfolio-overlay">
-                            <div class="portfolio-info">
-                                <h3>Dev Diary</h3>
-                                <p>Developer community platform</p>
-                                <div class="tech-stack">
-                                    <span>React</span>
-                                    <span>PHP</span>
-                                    <span>Account Kit</span>
-                                </div>
-                            </div>
+                        <div class="portfolio-icon security-icon">
+                            <i class="fas fa-shield-alt"></i>
                         </div>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item">
-                    <div class="portfolio-image">
-                        <img src="images/intore-security.jpg" alt="Intore Security">
                         <div class="portfolio-overlay">
                             <div class="portfolio-info">
                                 <h3>Intore Security Lab</h3>
-                                <p>Cybersecurity company website</p>
+                                <p>Co-founded cybersecurity company specializing in red team assessments and penetration testing</p>
                                 <div class="tech-stack">
-                                    <span>HTML5</span>
-                                    <span>CSS3</span>
-                                    <span>JavaScript</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item">
-                    <div class="portfolio-image">
-                        <img src="images/herbmadz.jpg" alt="Herbmadz">
-                        <div class="portfolio-overlay">
-                            <div class="portfolio-info">
-                                <h3>Herbmadz Satellite</h3>
-                                <p>Satellite services website</p>
-                                <div class="tech-stack">
-                                    <span>HTML5</span>
-                                    <span>CSS3</span>
-                                    <span>JavaScript</span>
+                                    <span>Red Team</span>
+                                    <span>Penetration Testing</span>
+                                    <span>Security Consulting</span>
                                 </div>
                             </div>
                         </div>
@@ -431,11 +539,212 @@
         </div>
     </section>
 
+    <!-- Experience Section -->
+    <section id="experience" class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-prompt">kermin@l:~$ cat ./experience.log</span>
+                <h2 class="section-title">Professional Experience</h2>
+            </div>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="experience-date">2022 – Present</div>
+                    <div class="experience-content">
+                        <h3>Application Security Engineer</h3>
+                        <h4>IREMBO • Kigali, Rwanda</h4>
+                        <ul>
+                            <li>Conduct comprehensive security testing, code reviews, and vulnerability assessments on web and mobile platforms</li>
+                            <li>Collaborate closely with engineering teams to integrate security practices into the development lifecycle (DevSecOps)</li>
+                            <li>Design and implement automated security processes and custom tools to streamline testing and vulnerability discovery</li>
+                            <li>Establish security standards and best practices across development teams</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-date">2021 – Present</div>
+                    <div class="experience-content">
+                        <h3>Instructor & Application Security Engineer (Part-Time)</h3>
+                        <h4>SHIELD TECH HUB • Kigali, Rwanda</h4>
+                        <ul>
+                            <li>Deliver comprehensive training on offensive security principles and vulnerability management</li>
+                            <li>Guide companies through vulnerability discovery, triage, and remediation processes</li>
+                            <li>Support startups in implementing DevSecOps practices and hands-on security tooling</li>
+                            <li>Develop curriculum and training materials for cybersecurity education programs</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-date">2019 – 2021</div>
+                    <div class="experience-content">
+                        <h3>Co-Founder, CTO & Chief Hacking Officer</h3>
+                        <h4>INTORE SECURITY LAB • Remote</h4>
+                        <ul>
+                            <li>Led comprehensive red team assessments and penetration testing engagements for diverse client base</li>
+                            <li>Architected and developed custom exploits and security assessment tools for enhanced efficiency</li>
+                            <li>Managed technical operations and established security testing methodologies</li>
+                            <li>Built strategic partnerships and drove business development in the cybersecurity sector</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-date">2016 – 2021</div>
+                    <div class="experience-content">
+                        <h3>Lead Developer</h3>
+                        <h4>IRIS HUB • Remote</h4>
+                        <ul>
+                            <li>Delivered end-to-end custom digital solutions and full-stack web applications for early-stage startups</li>
+                            <li>Led development teams and established technical architecture for scalable applications</li>
+                            <li>Collaborated with stakeholders to translate business requirements into technical solutions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Awards Section -->
+            <div class="awards-section">
+                <div class="section-header">
+                    <span class="section-prompt">kermin@l:~$ ls ./achievements/</span>
+                    <h3 class="section-subtitle">Awards & Recognition</h3>
+                </div>
+                <div class="awards-grid">
+                    <div class="award-item">
+                        <div class="award-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="award-content">
+                            <h4>Overall Winner & Best Attacker</h4>
+                            <p>CyberStars Rwanda Competition 2018</p>
+                        </div>
+                    </div>
+                    <div class="award-item">
+                        <div class="award-icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <div class="award-content">
+                            <h4>2nd Place</h4>
+                            <p>Rwanda National Cybersecurity Competition 2018</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Media Coverage Section -->
+    <section id="media" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-prompt">kermin@l:~$ find ./media_coverage -name "*.article"</span>
+                <h2 class="section-title">Media Coverage & Recognition</h2>
+            </div>
+            <div class="media-grid">
+                <div class="media-item">
+                    <div class="media-image">
+                        <div class="media-icon government-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="media-overlay">
+                            <div class="media-info">
+                                <h3>The winners of Cyber Stars of Rwanda competition rewarded</h3>
+                                <p class="media-source">Ministry of ICT and Innovation (MINICT)</p>
+                                <p class="media-excerpt">"Kevin Nyawakira; a student pursuing Networking and Communications at the Adventist University of Central Africa (AUCA), who topped the list of 12 winners, expressed his contentment."</p>
+                                <a href="https://minict.prod.risa.rw/news-detail/the-winners-of-cyber-stars-of-rwanda-competition-rewarded-by-the-ministry" target="_blank" class="media-link">Read Article</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media-item">
+                    <div class="media-image">
+                        <div class="media-icon competition-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="media-overlay">
+                            <div class="media-info">
+                                <h3>CyberStars of Rwanda 2018 Competition Coverage</h3>
+                                <p class="media-source">CyberStars Professional</p>
+                                <p class="media-excerpt">"Kevin Nyawakira – Adventist University of Central Africa (AUCA) – Information Technology -Networks and Communications System – 4th year - Overall Winner & Best Attacker"</p>
+                                <a href="https://cyberstars.pro/cyberstars-of-rwanda-2018/" target="_blank" class="media-link">Read Article</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media-item">
+                    <div class="media-image">
+                        <div class="media-icon newspaper-icon">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <div class="media-overlay">
+                            <div class="media-info">
+                                <h3>Cybersecurity efforts Mobilise Local Innovative Solutions</h3>
+                                <p class="media-source">The New Times Rwanda</p>
+                                <p class="media-excerpt">Coverage of Rwanda's cybersecurity initiatives and local talent development in the field.</p>
+                                <a href="#" target="_blank" class="media-link">Read Article</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media-item">
+                    <div class="media-image">
+                        <div class="media-icon news-icon">
+                            <i class="fas fa-broadcast-tower"></i>
+                        </div>
+                        <div class="media-overlay">
+                            <div class="media-info">
+                                <h3>12 Students Compete in Cybersecurity Defense Competition</h3>
+                                <p class="media-source">IGIHE</p>
+                                <p class="media-excerpt">Coverage of the national cybersecurity competition featuring top students from Rwandan universities.</p>
+                                <a href="#" target="_blank" class="media-link">Read Article</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media-item">
+                    <div class="media-image">
+                        <div class="media-icon report-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="media-overlay">
+                            <div class="media-info">
+                                <h3>CyberStars of Rwanda 2018 Event Report</h3>
+                                <p class="media-source">CyberRanges</p>
+                                <p class="media-excerpt">Detailed report on the CyberStars competition methodology and results from the training platform perspective.</p>
+                                <a href="#" target="_blank" class="media-link">Read Article</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media-item">
+                    <div class="media-image">
+                        <div class="media-icon safety-icon">
+                            <i class="fas fa-shield-virus"></i>
+                        </div>
+                        <div class="media-overlay">
+                            <div class="media-info">
+                                <h3>How to Stay Safe from Cyber Attacks in Today's World</h3>
+                                <p class="media-source">IGIHE</p>
+                                <p class="media-excerpt">Expert insights on cybersecurity best practices and protection strategies for individuals and organizations.</p>
+                                <a href="#" target="_blank" class="media-link">Read Article</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="section">
         <div class="container">
             <div class="section-header">
-                <span class="section-prompt">kevin@hackbox:~$ ./contact.sh --establish-connection</span>
+                <span class="section-prompt">kermin@l:~$ ./contact.sh --establish-connection</span>
                 <h2 class="section-title">Get In Touch</h2>
             </div>
             <div class="contact-content">
@@ -446,7 +755,7 @@
                     <div class="contact-methods">
                         <div class="contact-method">
                             <i class="fas fa-envelope"></i>
-                            <span>kevin@hackbox.dev</span>
+                            <span>knyawakira@gmail.com</span>
                         </div>
                         <div class="contact-method">
                             <i class="fas fa-phone"></i>
@@ -485,7 +794,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-text">
-                    <span class="prompt">kevin@hackbox:~$</span>
+                    <span class="prompt">kermin@l:~$</span>
                     <span>echo "Crafted with ❤️ by Kevin Nyawakira"</span>
                 </div>
                 <div class="footer-year">
@@ -496,6 +805,7 @@
     </footer>
 
     <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
