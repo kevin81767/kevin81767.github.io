@@ -16,7 +16,7 @@
        ============================================================ */
 
     var ABOUT_TEXT = [
-        'Passionate Application Security Engineer with expertise in vulnerability',
+        'Passionate Senior Application Security Engineer with expertise in vulnerability',
         'assessment, penetration testing, and DevSecOps integration. Former web',
         'developer turned security specialist with a proven track record of building',
         'custom security tools and automating security processes.',
@@ -24,7 +24,7 @@
         'Experienced in red team assessments, security research, and training teams',
         'on offensive security principles. Currently exploring AI applications in',
         'cybersecurity and developing innovative solutions for security automation.',
-        'Based in Kigali, Rwanda, working at IREMBO as an Application Security Engineer.'
+        'Based in Kigali, Rwanda, working at IREMBO as a Senior Application Security Engineer.'
     ].join('\n');
 
     var PROJECTS = [
@@ -61,8 +61,8 @@
         '<div class="about-row">' +
             '<img class="about-pic" src="images/Nyawakira-Kevin-pp.jpeg" alt="Kevin Nyawakira">' +
             '<div>' +
-                '<p>Passionate <strong>Application Security Engineer</strong> with expertise in vulnerability assessment, penetration testing, and DevSecOps integration. Former web developer turned security specialist with a proven track record of building custom security tools and automating security processes.</p>' +
-                '<p>Experienced in red team assessments, security research, and training teams on offensive security principles. Currently exploring AI applications in cybersecurity and developing innovative solutions for security automation. Based in Kigali, Rwanda, working at <strong>IREMBO</strong> as an Application Security Engineer.</p>' +
+                '<p>Passionate <strong>Senior Application Security Engineer</strong> with expertise in vulnerability assessment, penetration testing, and DevSecOps integration. Former web developer turned security specialist with a proven track record of building custom security tools and automating security processes.</p>' +
+                '<p>Experienced in red team assessments, security research, and training teams on offensive security principles. Currently exploring AI applications in cybersecurity and developing innovative solutions for security automation. Based in Kigali, Rwanda, working at <strong>IREMBO</strong> as a Senior Application Security Engineer.</p>' +
             '</div>' +
         '</div>' +
         '<div class="stat-row">' +
@@ -96,7 +96,7 @@
         '<h2 class="app-title">Experience</h2>' +
         '<div class="xp-list">' +
             '<div class="xp"><span class="xp-date">2022 — present</span>' +
-                '<h3>Application Security Engineer</h3><p class="xp-org">IREMBO · Kigali, Rwanda</p>' +
+                '<h3>Senior Application Security Engineer</h3><p class="xp-org">IREMBO · Kigali, Rwanda</p>' +
                 '<ul><li>Security testing, code reviews, and vulnerability assessments across web and mobile platforms</li>' +
                 '<li>Integrating security into the development lifecycle alongside engineering teams (DevSecOps)</li>' +
                 '<li>Designing automated security processes and custom tools for vulnerability discovery</li>' +
@@ -402,7 +402,7 @@
 
     var FILES = {
         'about.md': ABOUT_TEXT,
-        'experience.log': '[2022-now]  Application Security Engineer @ IREMBO\n[2021-now]  Instructor & AppSec Engineer @ SHIELD TECH HUB\n[2019-2021] Co-Founder, CTO & CHO @ INTORE SECURITY LAB\n[2016-2021] Lead Developer @ IRIS HUB\n\n(open experience  →  full details in a window)',
+        'experience.log': '[2022-now]  Senior Application Security Engineer @ IREMBO\n[2021-now]  Instructor & AppSec Engineer @ SHIELD TECH HUB\n[2019-2021] Co-Founder, CTO & CHO @ INTORE SECURITY LAB\n[2016-2021] Lead Developer @ IRIS HUB\n\n(open experience  →  full details in a window)',
         'contact.sh': '#!/bin/bash\n# reach kevin\nEMAIL="knyawakira@gmail.com"\nPHONE="+250 784 438 186"\nLOCATION="Kigali, Rwanda"\nGITHUB="github.com/kevin81767"\nLINKEDIN="linkedin.com/in/kevin-nyawakira-558307129"',
         'README.md': 'KERMINAL OS — the portfolio of Kevin Nyawakira.\nType `help` to see what this shell can do.\nTip: `open projects` launches a window. `matrix` is fun.',
         'CV.pdf': null
@@ -457,7 +457,7 @@
         var wel = document.createElement('div');
         wel.innerHTML =
             '<p class="t-line t-ok">Welcome to KERMINAL OS v3.0 (zsh 5.9)</p>' +
-            '<p class="t-line t-muted">Kevin Nyawakira — Application Security Engineer &amp; Security Researcher</p>' +
+            '<p class="t-line t-muted">Kevin Nyawakira — Senior Application Security Engineer &amp; Security Researcher</p>' +
             '<p class="t-line t-muted">Type <span class="t-ok">help</span> or click a command:</p>' +
             '<div class="t-chips">' +
                 ['help', 'neofetch', 'open projects', 'skills', 'cat about.md', 'contact', 'matrix'].map(function (c) {
@@ -545,7 +545,7 @@
         '██║ ██╔╝   </span>kevin<span class="t-muted">@</span>kerminal<span class="t-muted">\n' +
         '</span><span class="t-ok">█████╔╝    </span><span class="t-muted">──────────────────────────────</span>\n' +
         '<span class="t-ok">██╔═██╗    </span><span class="t-cyan">OS</span>: KERMINAL OS v3.0 x86_64\n' +
-        '<span class="t-ok">██║  ██╗   </span><span class="t-cyan">Role</span>: AppSec Engineer @ IREMBO\n' +
+        '<span class="t-ok">██║  ██╗   </span><span class="t-cyan">Role</span>: Senior Application Security Engineer @ IREMBO\n' +
         '<span class="t-ok">╚═╝  ╚═╝   </span><span class="t-cyan">Base</span>: Kigali, Rwanda\n' +
         '           <span class="t-cyan">Uptime</span>: 8+ years in security\n' +
         '           <span class="t-cyan">Packages</span>: 75+ projects, 150+ assessments\n' +
@@ -579,7 +579,7 @@
         }},
 
         whoami: { desc: '', fn: function () {
-            print('kevin — application security engineer & security researcher', '');
+            print('kevin — senior application security engineer & security researcher', '');
             print('former web developer · red teamer · builder of security tools', 't-muted');
         }},
 
