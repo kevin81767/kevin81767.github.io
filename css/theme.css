@@ -30,9 +30,27 @@
     --rain-alpha: 0.26;
     --grid-line: rgba(125, 200, 165, 0.035);
     --shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
-    --term-bg: #0a0f0c;
     --sb-bg: #0c1410;
     --selection: rgba(61, 220, 151, 0.25);
+
+    /* terminal palette (dark) */
+    --term-bg: #0a0f0c;
+    --term-text: #c9d7d0;
+    --term-muted: #71837b;
+    --term-ok: #3ddc97;
+    --term-err: #ff7b72;
+    --term-warn: #f5c452;
+    --term-cyan: #57c7ff;
+    --term-link: #57c7ff;
+    --term-link-hover: #8fd9ff;
+    --term-input: #e8f0ec;
+    --term-caret: #3ddc97;
+    --term-chip-fg: #3ddc97;
+    --term-chip-bg: rgba(61, 220, 151, 0.1);
+    --term-chip-border: rgba(61, 220, 151, 0.25);
+    --term-chip-hover: rgba(61, 220, 151, 0.2);
+    --term-scroll-thumb: rgba(125, 200, 165, 0.25);
+    --term-bar-dim: rgba(61, 220, 151, 0.2);
 }
 
 [data-theme="light"] {
@@ -55,9 +73,27 @@
     --rain-alpha: 0.10;
     --grid-line: rgba(20, 80, 55, 0.05);
     --shadow: 0 24px 60px rgba(25, 55, 42, 0.18);
-    --term-bg: #0c1410;
     --sb-bg: #dde4dd;
     --selection: rgba(12, 138, 90, 0.18);
+
+    /* terminal palette (light) */
+    --term-bg: #f4f7f4;
+    --term-text: #2c3b34;
+    --term-muted: #7c8d85;
+    --term-ok: #0c8a5a;
+    --term-err: #c4322a;
+    --term-warn: #9c6a0c;
+    --term-cyan: #0d6fa8;
+    --term-link: #0d6fa8;
+    --term-link-hover: #0a5887;
+    --term-input: #15211b;
+    --term-caret: #0c8a5a;
+    --term-chip-fg: #0c8a5a;
+    --term-chip-bg: rgba(12, 138, 90, 0.1);
+    --term-chip-border: rgba(12, 138, 90, 0.3);
+    --term-chip-hover: rgba(12, 138, 90, 0.18);
+    --term-scroll-thumb: rgba(20, 80, 55, 0.28);
+    --term-bar-dim: rgba(12, 138, 90, 0.18);
 }
 
 /* ---------- base ---------- */
@@ -338,7 +374,7 @@ button { font: inherit; color: inherit; }
     display: flex;
     flex-direction: column;
 }
-.win-terminal .win-bar { background: rgba(255, 255, 255, 0.03); }
+.win-terminal .win-bar { background: var(--win-bar); }
 
 .term-scroll {
     flex: 1;
@@ -347,30 +383,30 @@ button { font: inherit; color: inherit; }
     font-family: var(--font-mono);
     font-size: .8rem;
     line-height: 1.7;
-    color: #c9d7d0;
+    color: var(--term-text);
     cursor: text;
 }
 .term-scroll::-webkit-scrollbar { width: 9px; }
 .term-scroll::-webkit-scrollbar-thumb {
-    background: rgba(125, 200, 165, 0.25);
+    background: var(--term-scroll-thumb);
     border-radius: 6px;
     border: 2px solid transparent;
     background-clip: content-box;
 }
 
 .t-line { margin: 0; white-space: pre-wrap; word-break: break-word; }
-.t-muted { color: #71837b; }
-.t-ok { color: #3ddc97; }
-.t-err { color: #ff7b72; }
-.t-warn { color: #f5c452; }
-.t-cyan { color: #57c7ff; }
-.t-link { color: #57c7ff; text-decoration: underline; text-underline-offset: 3px; }
-.t-link:hover { color: #8fd9ff; }
+.t-muted { color: var(--term-muted); }
+.t-ok { color: var(--term-ok); }
+.t-err { color: var(--term-err); }
+.t-warn { color: var(--term-warn); }
+.t-cyan { color: var(--term-cyan); }
+.t-link { color: var(--term-link); text-decoration: underline; text-underline-offset: 3px; }
+.t-link:hover { color: var(--term-link-hover); }
 
-.t-prompt-user { color: #3ddc97; font-weight: 600; }
-.t-prompt-sep { color: #71837b; }
-.t-prompt-path { color: #57c7ff; }
-.t-prompt-sign { color: #c9d7d0; margin-right: .5em; }
+.t-prompt-user { color: var(--term-ok); font-weight: 600; }
+.t-prompt-sep { color: var(--term-muted); }
+.t-prompt-path { color: var(--term-cyan); }
+.t-prompt-sign { color: var(--term-text); margin-right: .5em; }
 
 .t-input-line { display: flex; align-items: baseline; }
 .t-input {
@@ -378,33 +414,33 @@ button { font: inherit; color: inherit; }
     background: transparent;
     border: none;
     outline: none;
-    color: #e8f0ec;
+    color: var(--term-input);
     font-family: var(--font-mono);
     font-size: inherit;
     line-height: inherit;
     padding: 0;
-    caret-color: #3ddc97;
+    caret-color: var(--term-caret);
 }
 
 .t-chips { display: flex; flex-wrap: wrap; gap: .4rem; margin: .5rem 0 .3rem; }
 .t-chip {
     font-family: var(--font-mono);
     font-size: .7rem;
-    color: #3ddc97;
-    background: rgba(61, 220, 151, 0.1);
-    border: 1px solid rgba(61, 220, 151, 0.25);
+    color: var(--term-chip-fg);
+    background: var(--term-chip-bg);
+    border: 1px solid var(--term-chip-border);
     border-radius: 6px;
     padding: .18rem .55rem;
     cursor: pointer;
     transition: background-color .15s ease;
 }
-.t-chip:hover { background: rgba(61, 220, 151, 0.2); }
+.t-chip:hover { background: var(--term-chip-hover); }
 
 /* ascii skill bars inside terminal */
 .t-bar-row { display: flex; gap: .8em; }
-.t-bar-name { width: 14ch; color: #c9d7d0; flex-shrink: 0; }
-.t-bar-track { color: #3ddc97; letter-spacing: .05em; }
-.t-bar-track .dimmed { color: rgba(61, 220, 151, 0.2); }
+.t-bar-name { width: 14ch; color: var(--term-text); flex-shrink: 0; }
+.t-bar-track { color: var(--term-ok); letter-spacing: .05em; }
+.t-bar-track .dimmed { color: var(--term-bar-dim); }
 
 /* ---------- generic app content ---------- */
 
