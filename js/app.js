@@ -27,6 +27,9 @@
         'Based in Kigali, Rwanda, working at IREMBO as a Senior Application Security Engineer.'
     ].join('\n');
 
+    var EXPERIENCE_LOG = '[2022-now]  Senior Application Security Engineer @ IREMBO\n[2021-now]  Instructor & AppSec Engineer @ SHIELD TECH HUB\n[2019-2021] Co-Founder, CTO & CHO @ INTORE SECURITY LAB\n[2016-2021] Lead Developer @ IRIS HUB\n\n(open experience  →  full details in a window)';
+    var CONTACT_SH = '#!/bin/bash\n# reach kevin\nEMAIL="knyawakira@gmail.com"\nPHONE="+250 784 438 186"\nLOCATION="Kigali, Rwanda"\nGITHUB="github.com/kevin81767"\nLINKEDIN="linkedin.com/in/kevin-nyawakira-558307129"';
+
     var PROJECTS = [
         { name: 'Bambda That!', desc: 'AI-powered GPT that converts plain English queries into precise Bambda filters for Burp Suite.', tags: ['AI', 'GPT', 'Burp Suite'] },
         { name: 'K-command', desc: 'Flask-based web application providing a unified interface for reconnaissance, fuzzing, and scanning tools.', tags: ['Python', 'Flask', 'Recon'] },
@@ -183,40 +186,41 @@
     var APPS = {
         terminal:   { title: 'kevin@kerminal: ~ — zsh', w: 660, h: 440, terminal: true },
         about:      { title: 'about.md', w: 600, h: 540, html: aboutHTML },
-        projects:   { title: '~/projects', w: 560, h: 560, html: projectsHTML },
         experience: { title: 'experience.log', w: 620, h: 580, html: experienceHTML },
         skills:     { title: 'scan_skills.sh', w: 560, h: 560, html: skillsHTML },
         press:      { title: '~/media', w: 620, h: 460, html: pressHTML },
         contact:    { title: 'contact.sh', w: 480, h: 460, html: contactHTML }
     };
-    var APP_ORDER = ['terminal', 'about', 'projects', 'experience', 'skills', 'press', 'contact'];
+    var APP_ORDER = ['terminal', 'about', 'experience', 'skills', 'press', 'contact'];
+    // "finder" is the pseudo-app for browsing directories (projects, skills, media…)
 
     /* ============================================================
-       WINDOW MANAGER
+       WINDOW MANAGER (generic — apps, Finder & document windows)
        ============================================================ */
 
     var wm = {
         wins: {},
         zTop: 10,
         cascade: 0,
+        activeId: null,
 
-        open: function (id) {
-            var app = APPS[id];
-            if (!app) return false;
-            var w = this.wins[id];
-            if (w) {
-                if (w.minimized) this.restore(id);
+        // Low-level: create a window from a spec.
+        // spec = { title, className, w, h, build(body, win), onOpen(body, win), dynamic, sbLabel }
+        spawn: function (id, spec) {
+            var existing = this.wins[id];
+            if (existing) {
+                if (existing.minimized) this.restore(id);
                 this.focus(id);
-                return true;
+                return existing;
             }
 
             var win = document.createElement('section');
-            win.className = 'win' + (app.terminal ? ' win-terminal' : '');
+            win.className = 'win' + (spec.className ? ' ' + spec.className : '');
             win.setAttribute('data-app', id);
-            win.setAttribute('aria-label', app.title);
+            win.setAttribute('aria-label', spec.title);
 
             var dw = desktop.clientWidth, dh = desktop.clientHeight;
-            var ww = Math.min(app.w, dw - 40), wh = Math.min(app.h, dh - 40);
+            var ww = Math.min(spec.w || 560, dw - 40), wh = Math.min(spec.h || 480, dh - 40);
             var x = Math.max(16, Math.round((dw - ww) / 2) + (this.cascade % 5) * 34 - 68);
             var y = Math.max(14, Math.round((dh - wh) / 2.4) + (this.cascade % 5) * 26 - 40);
             this.cascade++;
@@ -233,55 +237,72 @@
                         '<button class="t-min" aria-label="Minimize"></button>' +
                         '<button class="t-max" aria-label="Maximize"></button>' +
                     '</div>' +
-                    '<span class="win-title">' + app.title + '</span>' +
+                    '<span class="win-title">' + esc(spec.title) + '</span>' +
                 '</header>' +
-                '<div class="win-body"></div>';
+                '<div class="win-body"></div>' +
+                '<span class="win-resize" aria-hidden="true"></span>';
 
             var body = win.querySelector('.win-body');
-            if (app.terminal) {
-                buildTerminal(body);
-            } else {
-                body.innerHTML = app.html();
-            }
+            spec.build(body, win);
 
             windowsHost.appendChild(win);
-            this.wins[id] = { el: win, minimized: false, maximized: false };
+            this.wins[id] = {
+                el: win, minimized: false, maximized: false,
+                title: spec.title, dynamic: !!spec.dynamic,
+                sbLabel: spec.sbLabel || spec.title
+            };
 
-            // events
             var self = this;
             win.addEventListener('pointerdown', function () { self.focus(id); });
             win.querySelector('.t-close').addEventListener('click', function (e) { e.stopPropagation(); self.close(id); });
             win.querySelector('.t-min').addEventListener('click', function (e) { e.stopPropagation(); self.minimize(id); });
             win.querySelector('.t-max').addEventListener('click', function (e) { e.stopPropagation(); self.toggleMax(id); });
-            win.querySelector('.win-bar').addEventListener('dblclick', function () { self.toggleMax(id); });
+            win.querySelector('.win-bar').addEventListener('dblclick', function (e) { if (!e.target.closest('button')) self.toggleMax(id); });
             makeDraggable(win, win.querySelector('.win-bar'));
-
-            // buttons inside content that open other apps
-            body.addEventListener('click', function (e) {
-                var t = e.target.closest('[data-open]');
-                if (t) self.open(t.getAttribute('data-open'));
-            });
+            makeResizable(win, win.querySelector('.win-resize'));
 
             requestAnimationFrame(function () {
                 requestAnimationFrame(function () { win.classList.add('shown'); });
             });
 
             this.focus(id);
-
-            if (id === 'skills') animateBars(body);
-            if (app.terminal) setTimeout(focusTermInput, 80);
-
+            if (spec.onOpen) spec.onOpen(body, win);
             syncStatusBar();
+            return this.wins[id];
+        },
+
+        // Open a registered app by id.
+        open: function (id) {
+            var app = APPS[id];
+            if (!app) return false;
+            this.spawn(id, {
+                title: app.title,
+                className: app.terminal ? 'win-terminal' : '',
+                w: app.w, h: app.h,
+                sbLabel: id,
+                build: function (body) {
+                    if (app.terminal) buildTerminal(body);
+                    else body.innerHTML = app.html();
+                },
+                onOpen: function (body) {
+                    if (id === 'skills') animateBars(body);
+                    if (app.terminal) setTimeout(focusTermInput, 80);
+                    body.addEventListener('click', function (e) {
+                        var t = e.target.closest('[data-open]');
+                        if (t) { e.preventDefault(); wm.open(t.getAttribute('data-open')); }
+                    });
+                }
+            });
             return true;
         },
 
         close: function (id) {
             var w = this.wins[id];
             if (!w) return false;
-            var self = this;
             w.el.classList.add('closing');
             setTimeout(function () { w.el.remove(); }, reduceMotion ? 0 : 200);
             delete this.wins[id];
+            if (this.activeId === id) this.activeId = null;
             syncStatusBar();
             return true;
         },
@@ -321,13 +342,13 @@
                 this.wins[k].el.classList.toggle('active', k === id);
             }, this);
             this.activeId = id;
-            if (APPS[id].terminal && !isMobile()) focusTermInput();
+            if (APPS[id] && APPS[id].terminal && !isMobile()) focusTermInput();
             syncStatusBar();
         }
     };
 
     function makeDraggable(win, handle) {
-        var sx, sy, ox, oy, dragging = false;
+        var sx, sy, ox, oy, dragging = false, lastX = 0;
 
         handle.addEventListener('pointerdown', function (e) {
             if (e.target.closest('button')) return;
@@ -341,6 +362,7 @@
 
         handle.addEventListener('pointermove', function (e) {
             if (!dragging) return;
+            lastX = e.clientX;
             var nx = ox + (e.clientX - sx);
             var ny = oy + (e.clientY - sy);
             var maxX = desktop.clientWidth - 80;
@@ -349,15 +371,56 @@
             ny = Math.max(0, Math.min(ny, maxY));
             win.style.left = nx + 'px';
             win.style.top = ny + 'px';
+            // edge snap hint
+            win.classList.toggle('snap-hint', e.clientY <= 4 || e.clientX <= 4 || e.clientX >= desktop.clientWidth - 4);
         });
 
-        function release() {
+        function release(e) {
             if (!dragging) return;
             dragging = false;
-            win.classList.remove('dragging');
+            win.classList.remove('dragging', 'snap-hint');
+            // snap-to-edge (desktop only)
+            var y = e ? e.clientY : 999, x = e ? e.clientX : 999;
+            if (y <= 4) { snapWin(win, 'max'); }
+            else if (x <= 4) { snapWin(win, 'left'); }
+            else if (x >= desktop.clientWidth - 4) { snapWin(win, 'right'); }
         }
         handle.addEventListener('pointerup', release);
-        handle.addEventListener('pointercancel', release);
+        handle.addEventListener('pointercancel', function () { dragging = false; win.classList.remove('dragging', 'snap-hint'); });
+    }
+
+    function snapWin(win, mode) {
+        var dw = desktop.clientWidth, dh = desktop.clientHeight;
+        win.classList.remove('maxed');
+        if (mode === 'max') { win.classList.add('maxed'); return; }
+        win.style.top = '10px';
+        win.style.height = (dh - 20) + 'px';
+        win.style.width = (dw / 2 - 14) + 'px';
+        win.style.left = (mode === 'right' ? dw / 2 + 4 : 10) + 'px';
+    }
+
+    function makeResizable(win, handle) {
+        if (!handle) return;
+        var sx, sy, ow, oh, resizing = false;
+        handle.addEventListener('pointerdown', function (e) {
+            if (win.classList.contains('maxed') || isMobile()) return;
+            e.stopPropagation();
+            resizing = true;
+            sx = e.clientX; sy = e.clientY;
+            ow = win.offsetWidth; oh = win.offsetHeight;
+            win.classList.add('dragging');
+            handle.setPointerCapture(e.pointerId);
+        });
+        handle.addEventListener('pointermove', function (e) {
+            if (!resizing) return;
+            var nw = Math.max(320, Math.min(ow + (e.clientX - sx), desktop.clientWidth - win.offsetLeft - 6));
+            var nh = Math.max(180, Math.min(oh + (e.clientY - sy), desktop.clientHeight - win.offsetTop - 6));
+            win.style.width = nw + 'px';
+            win.style.height = nh + 'px';
+        });
+        function stop() { resizing = false; win.classList.remove('dragging'); }
+        handle.addEventListener('pointerup', stop);
+        handle.addEventListener('pointercancel', stop);
     }
 
     function animateBars(scope) {
@@ -365,6 +428,355 @@
         setTimeout(function () {
             fills.forEach(function (f) { f.style.width = f.getAttribute('data-w') + '%'; });
         }, reduceMotion ? 0 : 250);
+    }
+
+    /* ============================================================
+       VIRTUAL FILE SYSTEM  +  FINDER  +  DOCUMENT VIEWER
+       ============================================================ */
+
+    function fileSVG(kind, size) {
+        size = size || 38;
+        var folder = "<path d='M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z'/>";
+        var doc = "<path d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/><path d='M14 2v6h6'/>";
+        var term = "<rect x='2' y='4' width='20' height='16' rx='2'/><path d='m7 9 3 3-3 3M13 15h4'/>";
+        var pdf = "<path d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/><path d='M14 2v6h6'/><path d='M9 13h6M9 17h4' stroke-width='1.7'/>";
+        var url = "<path d='M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1'/><path d='M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1'/>";
+        var body = kind === 'dir' ? folder
+            : (kind === 'shell' || kind === 'python') ? term
+            : kind === 'pdf' ? pdf
+            : kind === 'url' ? url
+            : doc;
+        return "<svg class='fic fic-" + kind + "' viewBox='0 0 24 24' width='" + size + "' height='" + size +
+            "' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'>" + body + "</svg>";
+    }
+
+    // --- project files (paired with PROJECTS by index) ---
+    var PROJECT_META = [
+        { slug: 'bambda-that.md',  kind: 'markdown', size: '12 KB', date: 'Mar 2025', link: 'https://github.com/kevin81767' },
+        { slug: 'k-command.py',    kind: 'python',   size: '48 KB', date: 'Nov 2024', link: 'https://github.com/kevin81767' },
+        { slug: 'subpull.sh',      kind: 'shell',    size: '6 KB',  date: 'Aug 2024', link: 'https://github.com/kevin81767' },
+        { slug: 'lazy-bbh.sh',     kind: 'shell',    size: '9 KB',  date: 'Jun 2024', link: 'https://github.com/kevin81767' },
+        { slug: 'onion-resume.md', kind: 'markdown', size: '4 KB',  date: 'Feb 2024', link: 'https://github.com/kevin81767' },
+        { slug: 'intore-lab.md',   kind: 'markdown', size: '7 KB',  date: '2019',     link: 'https://github.com/kevin81767' }
+    ];
+
+    var MEDIA = [
+        { name: 'minict-award.url',      src: 'MINICT',      title: 'The winners of Cyber Stars of Rwanda competition rewarded by the Ministry', href: 'https://minict.prod.risa.rw/news-detail/the-winners-of-cyber-stars-of-rwanda-competition-rewarded-by-the-ministry' },
+        { name: 'cyberstars-2018.url',   src: 'CyberStars',  title: 'CyberStars of Rwanda 2018 — Overall Winner & Best Attacker', href: 'https://cyberstars.pro/cyberstars-of-rwanda-2018/' },
+        { name: 'newtimes.md',           src: 'New Times',   title: 'Cybersecurity efforts mobilise local innovative solutions' },
+        { name: 'igihe-competition.md',  src: 'IGIHE',       title: '12 students compete in cybersecurity defense competition' },
+        { name: 'cyberranges-report.md', src: 'CyberRanges', title: 'CyberStars of Rwanda 2018 — event report' },
+        { name: 'igihe-safety.md',       src: 'IGIHE',       title: 'How to stay safe from cyber attacks in today’s world' }
+    ];
+
+    function docShell(inner) { return '<div class="doc">' + inner + '</div>'; }
+
+    function projectDoc(p, m) {
+        return docShell(
+            '<div class="doc-head">' + fileSVG(m.kind, 44) +
+                '<div><h2 class="doc-title">' + esc(p.name) + '</h2>' +
+                '<p class="doc-sub mono">' + m.kind + ' · ' + m.size + ' · modified ' + m.date + '</p></div></div>' +
+            '<p class="doc-body">' + esc(p.desc) + '</p>' +
+            '<div class="tags">' + p.tags.map(function (t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</div>' +
+            '<div class="app-actions"><a class="btn btn-primary" href="' + m.link + '" target="_blank" rel="noopener">view on github ↗</a>' +
+            '<button class="btn btn-ghost" data-open="contact">discuss it</button></div>'
+        );
+    }
+
+    function skillDoc(title, items) {
+        return docShell(
+            '<div class="doc-head">' + fileSVG('list', 44) + '<div><h2 class="doc-title">~/' + esc(title) + '</h2>' +
+            '<p class="doc-sub mono">' + items.length + ' entries</p></div></div>' +
+            '<div class="chips">' + items.map(function (i) { return '<span class="chip">' + esc(i) + '</span>'; }).join('') + '</div>'
+        );
+    }
+
+    function mediaDoc(item) {
+        return docShell(
+            '<div class="doc-head">' + fileSVG(item.href ? 'url' : 'markdown', 44) +
+            '<div><h2 class="doc-title">' + esc(item.src) + '</h2><p class="doc-sub mono">press mention</p></div></div>' +
+            '<p class="doc-body">' + esc(item.title) + '</p>' +
+            (item.href ? '<div class="app-actions"><a class="btn btn-primary" href="' + item.href + '" target="_blank" rel="noopener">read article ↗</a></div>'
+                       : '<p class="doc-sub mono">offline archive — no live link</p>')
+        );
+    }
+
+    // --- build the tree ---
+    var projectChildren = {};
+    PROJECTS.forEach(function (p, i) {
+        var m = PROJECT_META[i];
+        projectChildren[m.slug] = {
+            type: 'file', kind: m.kind, size: m.size, date: m.date,
+            text: p.name + '\n\n' + p.desc + '\n\ntags: ' + p.tags.join(', ') + '\nrepo: ' + m.link,
+            doc: projectDoc(p, m)
+        };
+    });
+
+    var skillChildren = { 'scan_skills.sh': { type: 'file', kind: 'shell', size: '2 KB', date: '2025', appId: 'skills', text: '# run: opens the animated skill scan\nopen skills' } };
+    skillChildren['languages.cfg'] = { type: 'file', kind: 'list', size: '1 KB', date: '2025',
+        text: SKILL_BARS.map(function (s) { return s.name + ' = ' + s.level + '%'; }).join('\n'),
+        doc: skillDoc('languages', SKILL_BARS.map(function (s) { return s.name + ' — ' + s.level + '%'; })) };
+    SKILL_GROUPS.forEach(function (g) {
+        skillChildren[g.title + '.list'] = { type: 'file', kind: 'list', size: '1 KB', date: '2025',
+            text: g.items.join('\n'), doc: skillDoc(g.title, g.items) };
+    });
+
+    var mediaChildren = {};
+    MEDIA.forEach(function (item) {
+        mediaChildren[item.name] = {
+            type: 'file', kind: item.href ? 'url' : 'markdown', size: '2 KB', date: '2018',
+            href: item.href || null, text: item.src + ': ' + item.title + (item.href ? '\n' + item.href : ''),
+            doc: mediaDoc(item)
+        };
+    });
+
+    var trashChildren = {
+        'old_portfolio_2019.html': { type: 'file', kind: 'html', size: '820 KB', date: '2019',
+            text: 'deprecated. do not restore. seriously.',
+            doc: docShell('<div class="doc-head">' + fileSVG('html', 44) + '<div><h2 class="doc-title">old_portfolio_2019.html</h2><p class="doc-sub mono">deleted · 820 KB</p></div></div><p class="doc-body">bootstrap carousels, jQuery spaghetti, and a spinning logo. We do not speak of it. 💀</p>') },
+        'jquery-3.1.1.min.js': { type: 'file', kind: 'js', size: '86 KB', date: '2019',
+            text: '// you no longer need me',
+            doc: docShell('<div class="doc-head">' + fileSVG('js', 44) + '<div><h2 class="doc-title">jquery-3.1.1.min.js</h2><p class="doc-sub mono">deleted · 86 KB</p></div></div><p class="doc-body">Replaced by ~950 lines of hand-written vanilla JS. No frameworks were harmed since.</p>') },
+        'passwords.txt': { type: 'file', kind: 'text', size: '0 KB', date: 'never',
+            text: 'nice try 😄',
+            doc: docShell('<div class="doc-head">' + fileSVG('text', 44) + '<div><h2 class="doc-title">passwords.txt</h2><p class="doc-sub mono">0 bytes</p></div></div><p class="doc-body">nice try 😄 — a security engineer never stores plaintext credentials.</p>') }
+    };
+
+    var README_TEXT = 'KERMINAL OS — the portfolio of Kevin Nyawakira.\n\nThis is a fake operating system you can actually use.\n• Double-click folders to browse them.\n• Double-click files to open them.\n• Everything here is also reachable from the terminal (try `ls`, `cd projects`, `cat about.md`).\n• Press ⌘K / Ctrl+K for Spotlight search.';
+
+    var VFS = {
+        type: 'dir',
+        children: {
+            'about.md':       { type: 'file', kind: 'markdown', size: '3 KB',  date: '2025', appId: 'about', text: ABOUT_TEXT },
+            'projects':       { type: 'dir', size: PROJECTS.length + ' items', date: '2025', children: projectChildren },
+            'skills':         { type: 'dir', size: Object.keys(skillChildren).length + ' items', date: '2025', children: skillChildren },
+            'experience.log': { type: 'file', kind: 'log', size: '5 KB', date: '2025', appId: 'experience', text: EXPERIENCE_LOG },
+            'media':          { type: 'dir', size: MEDIA.length + ' items', date: '2018', children: mediaChildren },
+            'contact.sh':     { type: 'file', kind: 'shell', size: '1 KB', date: '2025', appId: 'contact', text: CONTACT_SH },
+            'CV.pdf':         { type: 'file', kind: 'pdf', size: '227 KB', date: '2025', download: 'kevinNyawakira_CV.pdf', text: '[binary] use `cv` to download' },
+            'README.md':      { type: 'file', kind: 'markdown', size: '1 KB', date: '2025', text: README_TEXT,
+                                doc: docShell('<div class="doc-head">' + fileSVG('markdown', 44) + '<div><h2 class="doc-title">README.md</h2><p class="doc-sub mono">markdown · 1 KB</p></div></div><pre class="doc-pre">' + esc(README_TEXT) + '</pre>') },
+            '.trash':         { type: 'dir', hidden: true, size: '3 items', date: '2019', children: trashChildren }
+        }
+    };
+
+    var FAVORITES = [
+        { path: '~', label: 'kevin', kind: 'home' },
+        { path: '~/projects', label: 'projects', kind: 'dir' },
+        { path: '~/skills', label: 'skills', kind: 'dir' },
+        { path: '~/media', label: 'media', kind: 'dir' },
+        { path: '~/.trash', label: 'trash', kind: 'trash' }
+    ];
+
+    // --- path helpers ---
+    function normalizePath(p) {
+        p = (p || '~').trim();
+        if (p === '' || p === '~' || p === '/') return '~';
+        p = p.replace(/\/+$/, '');
+        return p;
+    }
+    function resolvePath(p) {
+        p = normalizePath(p);
+        if (p === '~') return VFS;
+        var segs = p.split('/');
+        var node = VFS;
+        for (var i = 1; i < segs.length; i++) {
+            if (!node.children || !node.children[segs[i]]) return null;
+            node = node.children[segs[i]];
+        }
+        return node;
+    }
+    function joinPath(dir, name) { return dir === '~' ? '~/' + name : dir + '/' + name; }
+    function parentPath(p) { p = normalizePath(p); if (p === '~') return '~'; var s = p.split('/'); s.pop(); return s.length <= 1 ? '~' : s.join('/'); }
+    function baseName(p) { p = normalizePath(p); if (p === '~') return 'kevin'; var s = p.split('/'); return s[s.length - 1]; }
+    function prettyPath(p) { p = normalizePath(p); return p.replace('~', 'kevin').split('/').join(' ▸ '); }
+    function unixPath(p) { p = normalizePath(p); return p === '~' ? '/home/kevin' : p.replace('~', '/home/kevin'); }
+
+    // --- open a node by path ---
+    function openNode(path, node) {
+        node = node || resolvePath(path);
+        if (!node) return false;
+        if (node.type === 'dir') { openFinder(path); return true; }
+        if (node.appId) { wm.open(node.appId); return true; }
+        if (node.download) { downloadCV(); return true; }
+        if (node.href) { window.open(node.href, '_blank', 'noopener'); return true; }
+        openDoc(path, node);
+        return true;
+    }
+
+    function downloadCV() {
+        var a = document.createElement('a');
+        a.href = 'kevinNyawakira_CV.pdf';
+        a.download = 'kevinNyawakira_CV.pdf';
+        document.body.appendChild(a); a.click(); a.remove();
+    }
+
+    // --- document viewer window ---
+    function openDoc(path, node) {
+        node = node || resolvePath(path);
+        if (!node) return;
+        var id = 'doc:' + path;
+        wm.spawn(id, {
+            title: baseName(path), className: 'win-doc', w: 520, h: 460, dynamic: true, sbLabel: baseName(path),
+            build: function (body) {
+                body.innerHTML = (typeof node.doc === 'function' ? node.doc() : node.doc) ||
+                    docShell('<div class="doc-head">' + fileSVG(node.kind || 'text', 44) + '<div><h2 class="doc-title">' + esc(baseName(path)) + '</h2><p class="doc-sub mono">' + (node.kind || 'file') + '</p></div></div><pre class="doc-pre">' + esc(node.text || '(empty)') + '</pre>');
+                body.addEventListener('click', function (e) {
+                    var t = e.target.closest('[data-open]');
+                    if (t) { e.preventDefault(); wm.open(t.getAttribute('data-open')); }
+                });
+            }
+        });
+    }
+
+    // --- Finder ---
+    var finderState = null;
+    var finderEl = null;
+
+    function finderShellHTML() {
+        var favs = FAVORITES.map(function (f) {
+            var ic = f.kind === 'home' ? '⌂' : f.kind === 'trash' ? '⌫' : '📁';
+            return '<button class="fnd-fav" data-path="' + f.path + '"><span class="fav-ic">' + ic + '</span>' + esc(f.label) + '</button>';
+        }).join('');
+        return '<div class="finder">' +
+            '<aside class="fnd-side">' +
+                '<div class="fnd-side-h">Favorites</div>' + favs +
+            '</aside>' +
+            '<div class="fnd-main">' +
+                '<div class="fnd-toolbar">' +
+                    '<button class="fnd-nav fnd-back" title="Back">‹</button>' +
+                    '<button class="fnd-nav fnd-fwd" title="Forward">›</button>' +
+                    '<div class="fnd-crumbs"></div>' +
+                    '<div class="fnd-view">' +
+                        '<button data-v="icon" title="Icons">▦</button>' +
+                        '<button data-v="list" title="List">☰</button>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="fnd-content" tabindex="0"></div>' +
+                '<div class="fnd-status"></div>' +
+            '</div>' +
+        '</div>';
+    }
+
+    function openFinder(path) {
+        path = normalizePath(path || '~');
+        var node = resolvePath(path);
+        if (!node || node.type !== 'dir') { path = '~'; }
+        if (wm.wins['finder']) { finderNavigate(path, true); wm.focus('finder'); return; }
+        finderState = { path: path, hist: [path], hIndex: 0, view: (finderState && finderState.view) || 'icon' };
+        wm.spawn('finder', {
+            title: 'Finder — ' + prettyPath(path), className: 'win-finder', w: 720, h: 480,
+            dynamic: true, sbLabel: 'finder',
+            build: function (body) {
+                body.innerHTML = finderShellHTML();
+                finderEl = body.querySelector('.finder');
+                wireFinder();
+            },
+            onOpen: function () { renderFinder(); }
+        });
+    }
+
+    function wireFinder() {
+        finderEl.querySelectorAll('.fnd-fav').forEach(function (b) {
+            b.addEventListener('click', function () { finderNavigate(b.getAttribute('data-path'), true); });
+        });
+        finderEl.querySelector('.fnd-back').addEventListener('click', function () {
+            if (finderState.hIndex > 0) { finderState.hIndex--; finderNavigate(finderState.hist[finderState.hIndex], false); }
+        });
+        finderEl.querySelector('.fnd-fwd').addEventListener('click', function () {
+            if (finderState.hIndex < finderState.hist.length - 1) { finderState.hIndex++; finderNavigate(finderState.hist[finderState.hIndex], false); }
+        });
+        finderEl.querySelectorAll('.fnd-view button').forEach(function (b) {
+            b.addEventListener('click', function () { finderState.view = b.getAttribute('data-v'); renderFinder(); });
+        });
+        var content = finderEl.querySelector('.fnd-content');
+        content.addEventListener('click', function (e) {
+            var crumb = e.target.closest('.crumb');
+            if (crumb) { finderNavigate(crumb.getAttribute('data-path'), true); return; }
+            var it = e.target.closest('.fnd-item');
+            if (!it) { clearFinderSel(); return; }
+            selectFinderItem(it);
+            if (isMobile()) openFinderItem(it);
+        });
+        content.addEventListener('dblclick', function (e) {
+            var it = e.target.closest('.fnd-item');
+            if (it) openFinderItem(it);
+        });
+        // breadcrumb clicks live in toolbar
+        finderEl.querySelector('.fnd-crumbs').addEventListener('click', function (e) {
+            var crumb = e.target.closest('.crumb');
+            if (crumb) finderNavigate(crumb.getAttribute('data-path'), true);
+        });
+    }
+
+    function clearFinderSel() {
+        if (finderEl) finderEl.querySelectorAll('.fnd-item.sel').forEach(function (x) { x.classList.remove('sel'); });
+    }
+    function selectFinderItem(it) { clearFinderSel(); it.classList.add('sel'); }
+    function openFinderItem(it) {
+        var name = it.getAttribute('data-name');
+        var childPath = joinPath(finderState.path, name);
+        openNode(childPath);
+    }
+
+    function finderNavigate(path, push) {
+        path = normalizePath(path);
+        var node = resolvePath(path);
+        if (!node || node.type !== 'dir') return;
+        if (push) {
+            finderState.hist = finderState.hist.slice(0, finderState.hIndex + 1);
+            if (finderState.hist[finderState.hIndex] !== path) { finderState.hist.push(path); finderState.hIndex++; }
+        }
+        finderState.path = path;
+        renderFinder();
+        var rec = wm.wins['finder'];
+        if (rec) {
+            rec.el.querySelector('.win-title').textContent = 'Finder — ' + prettyPath(path);
+        }
+    }
+
+    function renderFinder() {
+        if (!finderEl) return;
+        var node = resolvePath(finderState.path) || VFS;
+        // crumbs
+        var segs = normalizePath(finderState.path).split('/');
+        var acc = '', crumbs = [];
+        segs.forEach(function (s, i) {
+            acc = i === 0 ? '~' : acc + '/' + s;
+            crumbs.push('<button class="crumb" data-path="' + acc + '">' + esc(i === 0 ? 'kevin' : s) + '</button>');
+        });
+        finderEl.querySelector('.fnd-crumbs').innerHTML = crumbs.join('<span class="crumb-sep">›</span>');
+        // nav buttons
+        finderEl.querySelector('.fnd-back').disabled = finderState.hIndex <= 0;
+        finderEl.querySelector('.fnd-fwd').disabled = finderState.hIndex >= finderState.hist.length - 1;
+        // favorites active state
+        finderEl.querySelectorAll('.fnd-fav').forEach(function (b) {
+            b.classList.toggle('active', b.getAttribute('data-path') === finderState.path);
+        });
+        // content
+        var names = Object.keys(node.children || {});
+        var content = finderEl.querySelector('.fnd-content');
+        content.className = 'fnd-content view-' + finderState.view;
+        content.innerHTML = names.map(function (name) {
+            var c = node.children[name];
+            var kind = c.type === 'dir' ? 'dir' : (c.kind || 'file');
+            if (finderState.view === 'list') {
+                return '<div class="fnd-item" data-name="' + esc(name) + '">' +
+                    '<span class="fi-ic">' + fileSVG(kind, 20) + '</span>' +
+                    '<span class="fi-name">' + esc(name) + '</span>' +
+                    '<span class="fi-kind mono">' + (c.type === 'dir' ? 'folder' : kind) + '</span>' +
+                    '<span class="fi-size mono">' + (c.size || '—') + '</span>' +
+                    '<span class="fi-date mono">' + (c.date || '') + '</span></div>';
+            }
+            return '<button class="fnd-item" data-name="' + esc(name) + '">' +
+                '<span class="fi-ic">' + fileSVG(kind, 40) + '</span>' +
+                '<span class="fi-name">' + esc(name) + '</span></button>';
+        }).join('') || '<p class="fnd-empty mono">— empty —</p>';
+        // status
+        var caps = ['3.2 TB of exploits available', 'plenty of 0-days left', 'no malware detected', 'coffee: 12%'];
+        finderEl.querySelector('.fnd-status').innerHTML =
+            '<span>' + names.length + ' item' + (names.length === 1 ? '' : 's') + '</span>' +
+            '<span class="mono">guest@kerminal · ' + caps[names.length % caps.length] + '</span>';
     }
 
     /* ---------- status bar ---------- */
@@ -389,6 +801,24 @@
             });
             sbApps.appendChild(b);
         });
+        // dynamic windows (Finder / documents) — appended after the fixed apps
+        var n = APP_ORDER.length;
+        Object.keys(wm.wins).forEach(function (id) {
+            var w = wm.wins[id];
+            if (!w.dynamic) return;
+            var b = document.createElement('button');
+            var suffix = (!w.minimized && wm.activeId === id) ? '*' : (w.minimized ? '-' : '');
+            b.className = 'sb-app open' +
+                (w.minimized ? ' min' : '') +
+                (wm.activeId === id && !w.minimized ? ' active' : '');
+            b.textContent = (n++) + ':' + w.sbLabel + suffix;
+            b.addEventListener('click', function () {
+                if (w.minimized) { wm.restore(id); wm.focus(id); }
+                else if (wm.activeId === id) { wm.minimize(id); }
+                else wm.focus(id);
+            });
+            sbApps.appendChild(b);
+        });
     }
 
     /* ============================================================
@@ -399,12 +829,13 @@
     var termInput = null;
     var history = [];
     var histIdx = -1;
+    var cwd = '~';   // terminal working directory (into the VFS)
 
     var FILES = {
         'about.md': ABOUT_TEXT,
-        'experience.log': '[2022-now]  Senior Application Security Engineer @ IREMBO\n[2021-now]  Instructor & AppSec Engineer @ SHIELD TECH HUB\n[2019-2021] Co-Founder, CTO & CHO @ INTORE SECURITY LAB\n[2016-2021] Lead Developer @ IRIS HUB\n\n(open experience  →  full details in a window)',
-        'contact.sh': '#!/bin/bash\n# reach kevin\nEMAIL="knyawakira@gmail.com"\nPHONE="+250 784 438 186"\nLOCATION="Kigali, Rwanda"\nGITHUB="github.com/kevin81767"\nLINKEDIN="linkedin.com/in/kevin-nyawakira-558307129"',
-        'README.md': 'KERMINAL OS — the portfolio of Kevin Nyawakira.\nType `help` to see what this shell can do.\nTip: `open projects` launches a window. `matrix` is fun.',
+        'experience.log': EXPERIENCE_LOG,
+        'contact.sh': CONTACT_SH,
+        'README.md': 'KERMINAL OS — the portfolio of Kevin Nyawakira.\nType `help` to see what this shell can do.\nTip: `open projects` launches a Finder window. `matrix` is fun.',
         'CV.pdf': null
     };
 
@@ -446,7 +877,14 @@
     function promptHTML() {
         return '<span class="t-prompt-user">kevin</span><span class="t-prompt-sep">@</span>' +
                '<span class="t-prompt-user">kerminal</span><span class="t-prompt-sep">:</span>' +
-               '<span class="t-prompt-path">~</span><span class="t-prompt-sign">$</span>';
+               '<span class="t-prompt-path">' + esc(normalizePath(cwd)) + '</span><span class="t-prompt-sign">$</span>';
+    }
+
+    function updatePrompt() {
+        var line = inputLineEl();
+        if (!line) return;
+        var pe = line.querySelector('.t-prompt');
+        if (pe) pe.innerHTML = promptHTML();
     }
 
     function buildTerminal(body) {
@@ -470,7 +908,7 @@
         // input line
         var line = document.createElement('div');
         line.className = 't-input-line';
-        line.innerHTML = promptHTML();
+        line.innerHTML = '<span class="t-prompt">' + promptHTML() + '</span>';
         termInput = document.createElement('input');
         termInput.className = 't-input';
         termInput.type = 'text';
@@ -521,17 +959,18 @@
         var parts = v.split(' ');
         var pool;
         if (parts.length === 1) {
-            pool = Object.keys(COMMANDS);
-        } else if (parts[0] === 'open' || parts[0] === 'close') {
+            pool = Object.keys(COMMANDS).filter(function (c) { return c.charAt(0) !== '_'; });
+        } else if (parts[0] === 'close') {
             pool = APP_ORDER;
-        } else if (parts[0] === 'cat') {
-            pool = Object.keys(FILES);
+        } else if (parts[0] === 'cd' || parts[0] === 'ls' || parts[0] === 'cat' || parts[0] === 'open') {
+            var node = resolvePath(cwd);
+            pool = node && node.children ? Object.keys(node.children) : [];
         } else { return; }
         var last = parts[parts.length - 1].toLowerCase();
-        var matches = pool.filter(function (c) { return c.indexOf(last) === 0; });
+        var matches = pool.filter(function (c) { return c.toLowerCase().indexOf(last) === 0; });
         if (matches.length === 1) {
             parts[parts.length - 1] = matches[0];
-            termInput.value = parts.join(' ') + (parts.length === 1 && (matches[0] === 'open' || matches[0] === 'cat' || matches[0] === 'close') ? ' ' : '');
+            termInput.value = parts.join(' ') + (parts.length === 1 ? ' ' : '');
         } else if (matches.length > 1) {
             print(matches.join('   '), 't-muted');
         }
@@ -559,9 +998,10 @@
                 ['help', 'show this help'],
                 ['whoami', 'who is kevin?'],
                 ['neofetch', 'system / profile info'],
-                ['ls', 'list files & apps'],
+                ['ls [dir]', 'list a directory'],
+                ['cd <dir>', 'change directory (try cd projects)'],
                 ['cat <file>', 'print a file (try about.md)'],
-                ['open <app>', 'open a window: ' + APP_ORDER.slice(1).join(', ')],
+                ['open <file|dir>', 'open in Finder / a window'],
                 ['close <app>', 'close a window'],
                 ['skills', 'technical skills with bars'],
                 ['projects', 'list projects'],
@@ -585,28 +1025,59 @@
 
         neofetch: { desc: '', fn: function () { printHTML(NEOFETCH); } },
 
-        ls: { desc: '', fn: function () {
-            printHTML(
-                '<p class="t-line"><span class="t-cyan">apps/</span>      ' +
-                APP_ORDER.slice(1).map(function (a) { return '<button class="t-chip" data-cmd="open ' + a + '">' + a + '</button>'; }).join(' ') + '</p>'
-            );
-            print(Object.keys(FILES).join('   '), '');
+        // resolve an argument to a VFS path relative to cwd (supports ~, .., absolute)
+        _resolveArg: function (a) {
+            if (a == null || a === '') return cwd;
+            if (a === '~' || a === '/') return '~';
+            if (a === '..') return parentPath(cwd);
+            if (a.charAt(0) === '~') return normalizePath(a);
+            return joinPath(cwd, a);
+        },
+
+        ls: { desc: '', fn: function (args) {
+            var p = COMMANDS._resolveArg(args[0]);
+            var node = resolvePath(p);
+            if (!node) { print('ls: ' + args[0] + ': No such file or directory', 't-err'); return; }
+            if (node.type !== 'dir') { print(baseName(p), ''); return; }
+            var names = Object.keys(node.children || {});
+            if (!names.length) { print('(empty)', 't-muted'); return; }
+            printHTML('<p class="t-line">' + names.map(function (n) {
+                var c = node.children[n];
+                var isDir = c.type === 'dir';
+                return '<button class="t-chip" data-cmd="open ' + joinPath(p, n) + '">' + esc(n) + (isDir ? '/' : '') + '</button>';
+            }).join(' ') + '</p>');
+        }},
+
+        cd: { desc: '', fn: function (args) {
+            var p = COMMANDS._resolveArg(args[0]);
+            var node = resolvePath(p);
+            if (!node) { print('cd: no such file or directory: ' + args[0], 't-err'); return; }
+            if (node.type !== 'dir') { print('cd: not a directory: ' + args[0], 't-err'); return; }
+            cwd = normalizePath(p);
+            updatePrompt();
         }},
 
         cat: { desc: '', fn: function (args) {
-            var f = args[0];
-            if (!f) { print('usage: cat <file>', 't-err'); return; }
-            if (f === 'CV.pdf') { COMMANDS.cv.fn([]); return; }
-            if (FILES[f] != null) { print(FILES[f], ''); }
-            else print('cat: ' + f + ': No such file or directory', 't-err');
+            var a = args[0];
+            if (!a) { print('usage: cat <file>', 't-err'); return; }
+            var p = COMMANDS._resolveArg(a);
+            var node = resolvePath(p);
+            if (!node) { print('cat: ' + a + ': No such file or directory', 't-err'); return; }
+            if (node.type === 'dir') { print('cat: ' + a + ': Is a directory', 't-err'); return; }
+            if (node.download) { downloadCV(); return; }
+            print(node.text || '(binary file)', '');
         }},
 
         open: { desc: '', fn: function (args) {
-            var a = (args[0] || '').toLowerCase();
-            if (!a) { print('usage: open <' + APP_ORDER.join('|') + '>', 't-err'); return; }
-            if (a === 'cv') { COMMANDS.cv.fn([]); return; }
-            if (wm.open(a)) print('[ok] ' + a + ' opened', 't-ok');
-            else print('open: no app named "' + a + '"', 't-err');
+            var a = args[0];
+            if (!a) { print('usage: open <file|dir|app>', 't-err'); return; }
+            if (a.toLowerCase() === 'cv') { downloadCV(); print('[ok] downloading CV ...', 't-ok'); return; }
+            if (APPS[a.toLowerCase()]) { wm.open(a.toLowerCase()); print('[ok] ' + a + ' opened', 't-ok'); return; }
+            var p = COMMANDS._resolveArg(a);
+            var node = resolvePath(p);
+            if (!node) { print('open: cannot open "' + a + '": no such file or app', 't-err'); return; }
+            openNode(p, node);
+            print('[ok] opened ' + baseName(p), 't-ok');
         }},
 
         close: { desc: '', fn: function (args) {
@@ -691,7 +1162,7 @@
             setTimeout(function () { wm.close('terminal'); }, 250);
         }},
 
-        pwd: { desc: '', fn: function () { print('/home/kevin', ''); } },
+        pwd: { desc: '', fn: function () { print(unixPath(cwd), ''); } },
         date: { desc: '', fn: function () { print(new Date().toString(), ''); } },
         uname: { desc: '', fn: function () { print('KerminalOS 3.0.0-kerminal x86_64 GNU/Linux', ''); } },
         echo: { desc: '', fn: function (args) { print(args.join(' '), ''); } },
@@ -857,6 +1328,337 @@
     document.querySelectorAll('.dicon[data-open]').forEach(function (b) {
         b.addEventListener('click', function () { wm.open(b.getAttribute('data-open')); });
     });
+    document.querySelectorAll('.dicon[data-path]').forEach(function (b) {
+        b.addEventListener('click', function () { openFinder(b.getAttribute('data-path')); });
+    });
+
+    /* ============================================================
+       OS CHROME — menu bar, context menus, Get Info
+       ============================================================ */
+
+    function toggleTheme() { setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); }
+    function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+    function setFinderView(v) {
+        if (!finderState) openFinder('~');
+        finderState.view = v;
+        if (finderEl) renderFinder();
+        if (wm.wins['finder']) wm.focus('finder');
+    }
+
+    function aboutComputer() {
+        var html = docShell(
+            '<div class="doc-head">' + fileSVG('file', 44) + '<div><h2 class="doc-title">KERMINAL OS</h2><p class="doc-sub mono">version 3.0 · single-user</p></div></div>' +
+            '<dl class="info-grid">' +
+            '<dt>Machine</dt><dd>Kerminal Workstation</dd>' +
+            '<dt>Processor</dt><dd>caffeine-fueled @ 3.80GHz</dd>' +
+            '<dt>Memory</dt><dd>enough</dd>' +
+            '<dt>Graphics</dt><dd>Matrix Rain Accelerator</dd>' +
+            '<dt>Uptime</dt><dd>8+ years in security</dd>' +
+            '<dt>Operator</dt><dd>kevin nyawakira</dd>' +
+            '<dt>Role</dt><dd>Senior AppSec Engineer @ IREMBO</dd>' +
+            '</dl>' +
+            '<div class="app-actions"><button class="btn btn-ghost" data-open="contact">say hi</button></div>'
+        );
+        wm.spawn('about-computer', {
+            title: 'About This Computer', className: 'win-doc', w: 420, h: 430, dynamic: true, sbLabel: 'about-mac',
+            build: function (b) {
+                b.innerHTML = html;
+                b.addEventListener('click', function (e) { var t = e.target.closest('[data-open]'); if (t) { e.preventDefault(); wm.open(t.getAttribute('data-open')); } });
+            }
+        });
+    }
+
+    function getInfo(path, node) {
+        node = node || resolvePath(path);
+        if (!node) return;
+        var kind = node.type === 'dir' ? 'Folder' : (node.kind || 'Document');
+        var html = docShell(
+            '<div class="doc-head">' + fileSVG(node.type === 'dir' ? 'dir' : (node.kind || 'file'), 44) +
+            '<div><h2 class="doc-title">' + esc(baseName(path)) + '</h2><p class="doc-sub mono">' + esc(kind) + '</p></div></div>' +
+            '<dl class="info-grid">' +
+            '<dt>Kind</dt><dd>' + esc(kind) + '</dd>' +
+            '<dt>Size</dt><dd>' + esc(node.size || '—') + '</dd>' +
+            '<dt>Where</dt><dd>' + esc(unixPath(parentPath(path))) + '</dd>' +
+            '<dt>Modified</dt><dd>' + esc(node.date || '—') + '</dd>' +
+            (node.type === 'dir' ? '<dt>Items</dt><dd>' + Object.keys(node.children || {}).length + '</dd>' : '') +
+            '</dl>'
+        );
+        wm.spawn('info:' + path, { title: 'Info — ' + baseName(path), className: 'win-doc', w: 340, h: 360, dynamic: true, sbLabel: 'info', build: function (b) { b.innerHTML = html; } });
+    }
+
+    // shared item builder for dropdowns + context menus
+    function buildMenuItems(container, items, after) {
+        container.innerHTML = '';
+        items.forEach(function (it) {
+            if (it.sep) { var s = document.createElement('div'); s.className = 'menu-sep'; container.appendChild(s); return; }
+            var b = document.createElement('button');
+            b.innerHTML = '<span>' + esc(it.label) + '</span>' + (it.key ? '<span class="mk">' + esc(it.key) + '</span>' : '');
+            if (it.disabled) b.disabled = true;
+            b.addEventListener('click', function (e) { e.stopPropagation(); if (it.act) it.act(); if (after) after(); });
+            container.appendChild(b);
+        });
+    }
+
+    var MENUS = [
+        { label: '⌘ KERMINAL', brand: true, items: [
+            { label: 'About This Computer', act: aboutComputer },
+            { sep: true },
+            { label: 'Toggle Theme', act: toggleTheme },
+            { label: 'Enter the Matrix', act: function () { COMMANDS.matrix.fn([]); } }
+        ]},
+        { label: 'File', items: [
+            { label: 'New Terminal Window', act: function () { wm.open('terminal'); } },
+            { label: 'New Finder Window', act: function () { openFinder('~'); } },
+            { sep: true },
+            { label: 'Close Window', act: function () { if (wm.activeId) wm.close(wm.activeId); } }
+        ]},
+        { label: 'View', items: [
+            { label: 'as Icons', act: function () { setFinderView('icon'); } },
+            { label: 'as List', act: function () { setFinderView('list'); } },
+            { sep: true },
+            { label: 'Toggle Full Screen', act: function () { if (wm.activeId) wm.toggleMax(wm.activeId); } }
+        ]},
+        { label: 'Go', items: FAVORITES.map(function (f) { return { label: f.label === 'kevin' ? 'Home' : cap(f.label), act: function () { openFinder(f.path); } }; }) },
+        { label: 'Help', items: [
+            { label: 'README', act: function () { openNode('~/README.md'); } },
+            { label: 'About This Computer', act: aboutComputer }
+        ]}
+    ];
+
+    (function buildMenuBar() {
+        var mb = document.getElementById('menubar');
+        if (!mb) return;
+        var openIdx = -1, pop = null;
+
+        function closeMenu() {
+            if (pop) { pop.remove(); pop = null; }
+            if (openIdx >= 0 && MENUS[openIdx]._btn) MENUS[openIdx]._btn.classList.remove('open');
+            openIdx = -1;
+        }
+        function openMenu(idx) {
+            closeMenu();
+            openIdx = idx;
+            var btn = MENUS[idx]._btn;
+            btn.classList.add('open');
+            pop = document.createElement('div');
+            pop.className = 'menu-pop';
+            buildMenuItems(pop, MENUS[idx].items, closeMenu);
+            document.body.appendChild(pop);
+            var r = btn.getBoundingClientRect();
+            pop.style.left = Math.min(r.left, window.innerWidth - pop.offsetWidth - 8) + 'px';
+            pop.style.top = '26px';
+        }
+
+        MENUS.forEach(function (m, idx) {
+            var btn = document.createElement('button');
+            btn.className = 'mb-item' + (m.brand ? ' brand' : '');
+            btn.textContent = m.label;
+            btn.addEventListener('click', function (e) { e.stopPropagation(); (openIdx === idx) ? closeMenu() : openMenu(idx); });
+            btn.addEventListener('mouseenter', function () { if (openIdx >= 0 && openIdx !== idx) openMenu(idx); });
+            mb.appendChild(btn);
+            m._btn = btn;
+        });
+        var spacer = document.createElement('div'); spacer.className = 'mb-spacer'; mb.appendChild(spacer);
+        var right = document.createElement('div'); right.className = 'mb-right'; right.textContent = 'kevin@kerminal'; mb.appendChild(right);
+
+        document.addEventListener('click', closeMenu);
+    })();
+
+    (function contextMenus() {
+        var ctx = document.getElementById('ctxmenu');
+        if (!ctx) return;
+        function hide() { ctx.hidden = true; }
+        function show(x, y, items) {
+            buildMenuItems(ctx, items, hide);
+            ctx.hidden = false;
+            ctx.style.left = Math.min(x, window.innerWidth - ctx.offsetWidth - 8) + 'px';
+            ctx.style.top = Math.min(y, window.innerHeight - ctx.offsetHeight - 8) + 'px';
+        }
+        document.addEventListener('click', hide);
+        window.addEventListener('blur', hide);
+        document.addEventListener('contextmenu', function (e) {
+            var item = e.target.closest('.fnd-item');
+            if (item && finderEl && finderEl.contains(item)) {
+                e.preventDefault();
+                var path = joinPath(finderState.path, item.getAttribute('data-name'));
+                var node = resolvePath(path);
+                var items = [
+                    { label: 'Open', act: function () { openNode(path, node); } },
+                    { label: 'Get Info', act: function () { getInfo(path, node); } }
+                ];
+                if (node && node.download) items.push({ sep: true }, { label: 'Download', act: downloadCV });
+                if (node && node.href) items.push({ sep: true }, { label: 'Open Link', act: function () { window.open(node.href, '_blank', 'noopener'); } });
+                show(e.clientX, e.clientY, items);
+                return;
+            }
+            if (!e.target.closest('.win') && !e.target.closest('#menubar')) {
+                e.preventDefault();
+                show(e.clientX, e.clientY, [
+                    { label: 'New Terminal Window', act: function () { wm.open('terminal'); } },
+                    { label: 'New Finder Window', act: function () { openFinder('~'); } },
+                    { sep: true },
+                    { label: 'Toggle Theme', act: toggleTheme },
+                    { label: 'Enter the Matrix', act: function () { COMMANDS.matrix.fn([]); } }
+                ]);
+            }
+        });
+    })();
+
+    /* ============================================================
+       DELIGHT — Spotlight, Quick Look, toasts
+       ============================================================ */
+
+    function iconKind(entry) {
+        return entry.kind === 'folder' ? 'dir' : entry.kind === 'app' ? 'file' : entry.kind === 'cmd' ? 'shell' : entry.kind;
+    }
+
+    function buildSearchIndex() {
+        var out = [];
+        (function walk(node, path) {
+            Object.keys(node.children || {}).forEach(function (name) {
+                var c = node.children[name];
+                var p = joinPath(path, name);
+                out.push({ label: name, sub: unixPath(p), path: p, kind: c.type === 'dir' ? 'folder' : (c.kind || 'file') });
+                if (c.type === 'dir') walk(c, p);
+            });
+        })(VFS, '~');
+        APP_ORDER.forEach(function (id) { out.push({ label: id, sub: 'application', app: id, kind: 'app' }); });
+        [['matrix', 'follow the white rabbit'], ['neofetch', 'system / profile info'], ['theme', 'toggle light / dark']]
+            .forEach(function (c) { out.push({ label: c[0], sub: c[1], cmd: c[0], kind: 'cmd' }); });
+        return out;
+    }
+    var SEARCH_INDEX = buildSearchIndex();
+
+    function scoreEntry(hay, q) {
+        hay = hay.toLowerCase();
+        var i = hay.indexOf(q);
+        if (i >= 0) return 100 - i;
+        var qi = 0;
+        for (var k = 0; k < hay.length && qi < q.length; k++) if (hay[k] === q[qi]) qi++;
+        return qi === q.length ? 10 : -1;
+    }
+
+    function openEntry(e) {
+        closeSpotlight();
+        if (e.app) { wm.open(e.app); return; }
+        if (e.cmd) {
+            if (e.cmd === 'theme') { toggleTheme(); return; }
+            wm.open('terminal'); setTimeout(function () { runCommand(e.cmd); }, 140); return;
+        }
+        if (e.path) openNode(e.path);
+    }
+
+    var spotlightSel = 0, spotlightHits = [];
+    function renderSpotlight(q) {
+        var list = document.getElementById('slResults');
+        q = (q || '').trim().toLowerCase();
+        if (!q) {
+            spotlightHits = SEARCH_INDEX.filter(function (e) { return e.app || e.cmd || e.path && e.path.split('/').length <= 2; }).slice(0, 8);
+        } else {
+            spotlightHits = SEARCH_INDEX.map(function (e) { return { e: e, s: scoreEntry(e.label + ' ' + e.sub, q) }; })
+                .filter(function (x) { return x.s >= 0; })
+                .sort(function (a, b) { return b.s - a.s; })
+                .slice(0, 9).map(function (x) { return x.e; });
+        }
+        spotlightSel = 0;
+        if (!spotlightHits.length) { list.innerHTML = '<div class="sl-empty">no matches</div>'; return; }
+        list.innerHTML = spotlightHits.map(function (e, i) {
+            var tag = e.app ? 'app' : e.cmd ? 'cmd' : e.kind === 'folder' ? 'folder' : 'file';
+            return '<div class="sl-row' + (i === 0 ? ' active' : '') + '" data-i="' + i + '">' +
+                fileSVG(iconKind(e), 22) +
+                '<div class="sl-main"><span class="sl-label">' + esc(e.label) + '</span><span class="sl-sub">' + esc(e.sub) + '</span></div>' +
+                '<span class="sl-tag">' + tag + '</span></div>';
+        }).join('');
+    }
+    function highlightSpotlight() {
+        var rows = document.querySelectorAll('#slResults .sl-row');
+        rows.forEach(function (r, i) { r.classList.toggle('active', i === spotlightSel); });
+        if (rows[spotlightSel]) rows[spotlightSel].scrollIntoView({ block: 'nearest' });
+    }
+    function openSpotlight() {
+        var sp = document.getElementById('spotlight');
+        sp.hidden = false;
+        var inp = document.getElementById('slInput');
+        inp.value = '';
+        renderSpotlight('');
+        setTimeout(function () { inp.focus(); }, 20);
+    }
+    function closeSpotlight() { document.getElementById('spotlight').hidden = true; }
+    function spotlightOpen() { return !document.getElementById('spotlight').hidden; }
+
+    (function wireSpotlight() {
+        var sp = document.getElementById('spotlight');
+        var inp = document.getElementById('slInput');
+        var list = document.getElementById('slResults');
+        inp.addEventListener('input', function () { renderSpotlight(inp.value); });
+        inp.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowDown') { e.preventDefault(); spotlightSel = Math.min(spotlightSel + 1, spotlightHits.length - 1); highlightSpotlight(); }
+            else if (e.key === 'ArrowUp') { e.preventDefault(); spotlightSel = Math.max(spotlightSel - 1, 0); highlightSpotlight(); }
+            else if (e.key === 'Enter') { e.preventDefault(); if (spotlightHits[spotlightSel]) openEntry(spotlightHits[spotlightSel]); }
+            else if (e.key === 'Escape') { e.preventDefault(); closeSpotlight(); }
+        });
+        list.addEventListener('click', function (e) {
+            var row = e.target.closest('.sl-row');
+            if (row) openEntry(spotlightHits[+row.getAttribute('data-i')]);
+        });
+        sp.addEventListener('click', function (e) { if (e.target === sp) closeSpotlight(); });
+    })();
+
+    // ---- Quick Look ----
+    function quickLook(path) {
+        var node = resolvePath(path);
+        if (!node) return;
+        var ql = document.getElementById('quicklook');
+        var inner = node.type === 'dir'
+            ? docShell('<div class="doc-head">' + fileSVG('dir', 44) + '<div><h2 class="doc-title">' + esc(baseName(path)) + '</h2><p class="doc-sub mono">folder · ' + Object.keys(node.children || {}).length + ' items</p></div></div>')
+            : (typeof node.doc === 'function' ? node.doc() : node.doc) ||
+              docShell('<div class="doc-head">' + fileSVG(node.kind || 'file', 44) + '<div><h2 class="doc-title">' + esc(baseName(path)) + '</h2><p class="doc-sub mono">' + (node.kind || 'file') + '</p></div></div><pre class="doc-pre">' + esc(node.text || '(empty)') + '</pre>');
+        ql.innerHTML = '<div class="ql-card">' + inner + '</div><div class="ql-hint">Quick Look — press Space or Esc to close</div>';
+        ql.hidden = false;
+    }
+    function closeQuickLook() { document.getElementById('quicklook').hidden = true; }
+    function quickLookOpen() { return !document.getElementById('quicklook').hidden; }
+    (function wireQuickLook() {
+        var ql = document.getElementById('quicklook');
+        ql.addEventListener('click', closeQuickLook);
+    })();
+
+    // ---- toasts ----
+    function toast(msg, ms) {
+        var host = document.getElementById('toasts');
+        if (!host) return;
+        var t = document.createElement('div');
+        t.className = 'toast';
+        t.innerHTML = '<svg class="ti" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2Z"/></svg><span>' + msg + '</span>';
+        host.appendChild(t);
+        setTimeout(function () { t.classList.add('leaving'); setTimeout(function () { t.remove(); }, 250); }, ms || 5200);
+    }
+    window.__toast = toast;
+
+    // ---- global shortcuts ----
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && (e.key === 'k' || e.key === 'K')) {
+            e.preventDefault();
+            spotlightOpen() ? closeSpotlight() : openSpotlight();
+            return;
+        }
+        if (e.key === 'Escape') {
+            if (spotlightOpen()) closeSpotlight();
+            if (quickLookOpen()) closeQuickLook();
+            return;
+        }
+        if (e.key === ' ' || e.code === 'Space') {
+            var ae = document.activeElement;
+            if (ae && (ae.tagName === 'INPUT' || ae.tagName === 'TEXTAREA')) return;
+            if (spotlightOpen()) return;
+            if (quickLookOpen()) { e.preventDefault(); closeQuickLook(); return; }
+            if (finderEl && finderState) {
+                var sel = finderEl.querySelector('.fnd-item.sel');
+                if (sel) { e.preventDefault(); quickLook(joinPath(finderState.path, sel.getAttribute('data-name'))); }
+            }
+        }
+    });
 
     /* ============================================================
        BOOT SEQUENCE
@@ -898,6 +1700,10 @@
             setTimeout(function () { bootEl.classList.add('hidden'); }, fast ? 0 : 460);
             sessionStorage.setItem('booted', '1');
             openInitial();
+            if (!sessionStorage.getItem('tipShown') && !isMobile()) {
+                sessionStorage.setItem('tipShown', '1');
+                setTimeout(function () { if (window.__toast) window.__toast('Tip: press ⌘K (Ctrl+K) to search files, apps &amp; commands.'); }, 1600);
+            }
         }
 
         if (reduceMotion || sessionStorage.getItem('booted')) {
