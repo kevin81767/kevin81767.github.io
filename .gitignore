@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# editor / tooling
+.claude/
+.vscode/
+.idea/
+*.swp
+
+# env & secrets — never commit these
+.env
+.env.*
+*.pem
+*.key
+*.p12
+secrets.*
